@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { TemplateComponent } from './template/template.component';
+import { KanbanComponent } from './kanban/kanban.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TemplateComponent
+    TemplateComponent,
+    KanbanComponent
   ],
   imports: [
     BrowserModule

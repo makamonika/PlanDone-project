@@ -1,28 +1,39 @@
-<nav class="navbar navbar-expand-lg navbar-light nav-bg-color">
+<div class="d-flex flex-column min-vh-100" >
+  <nav class="navbar navbar-expand-md navbar-light nav-bg-color">
     <a class="navbar-brand logo-font" href="#"><b>Plan</b>Done</a>
-    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button> -->
-  
+    </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#"> <i class="fa fa-home nav-icon"></i>Strona główna</a>
+          <a class="nav-link nav-headings" href="#"> <i class="fa fa-home nav-icon"></i><span>Strona główna</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link nav-headings" href="#"><i class="fa fa-columns nav-icon"></i>Kanban</a>
+          <a class="nav-link nav-headings" href="#"><i class="fa fa-columns nav-icon"></i><span>Kanban</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  nav-headings" href="#"><i class="fa fa-calendar-o nav-icon"></i>Kalendarz</a>
+          <a class="nav-link nav-headings" href="#"><i class="fa fa-calendar-o nav-icon"></i><span>Kalendarz</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa fa-list nav-icon"></i>Lista</a>
+          <a class="nav-link nav-headings" href="#"><i class="fa fa-list nav-icon"></i><span>Lista zadań</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa fa-plus nav-icon"></i>Dodaj nowe</a>
+          <a class="nav-link nav-headings" href="#"><i class="fa fa-plus nav-icon"></i><span>Nowe zadanie</span></a>
         </li>
       </ul>
     </div>
   </nav>
-<div>container - routing</div>
-<div>footer</div>
+  <div class="container flex-fill">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb breadcrumb-style">
+        <li class="breadcrumb-item"><a class="breadcrumb-text" href="#">Strona Główna</a></li>
+        <li class="breadcrumb-item"><a class="breadcrumb-text" href="#">Lista zadań</a></li>
+        <li class="breadcrumb-item active">PlanDone Projekt</li>
+      </ol>
+    </nav>
+    <div>container - routing</div>
+  </div>
+  <div class="footer" style="text-align: end"><span>Monika Mąka - frontend angular dev - 2020</span></div>
+</div>

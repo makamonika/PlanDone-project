@@ -33,9 +33,16 @@
 //     background-color: #c6c5ca;
 //   }
 
+$bg-color-1: #7ecf9f;
+$bg-color-2: #fff5ef;
+$bg-color-3: #e7e5ee;
+$font-color:rgba(44, 44, 44, 0.8);
+$font-color-hover:rgba(44, 44, 44, 1); 
+$font-color-active: rgba(0,0,0,.9);
+
 .nav-bg-color{
-    background-color: #7ecf9f;
-    opacity: 0.7;
+    background-color: $bg-color-1;
+    opacity: .7;
 }
 
 .logo-font{
@@ -45,17 +52,18 @@
     padding-right: 1.4rem;
     padding-left: 1.4rem;
 }
-// .nav-headings{
-//     color:  rgba(44, 44, 44, 0.9);
-//     &.active{
-//         color: rgba(0,0,0,.9) !important;
-//     }
-// }
-// .nav-headings:hover {
-//  color: red;
-//  font-size: larger;
-//  //:rgba(44, 44, 44, 1) !important;
-// }
+.nav-headings{
+    color: $font-color !important;
+}
+.active > .nav-headings{
+    color: $font-color-active !important;
+}
+.nav-headings:hover {
+    color: $font-color-hover;
+    & span{
+        font-size: larger;
+    }
+}
 
 .nav-icon{
     opacity: 0.6;
@@ -65,4 +73,36 @@
     padding: 0.35rem;
     margin: 0.3rem;
     color: inherit;
+}
+
+.container{
+    background-color: $bg-color-3 ;
+    padding: 10px 20px 10px 20px;
+    margin: 0px;
+    max-width: inherit;
+}
+
+
+.footer{
+    font-size: 0.7rem;
+    padding: 5px 20px 5px 20px;
+    background-color: $bg-color-3;
+}
+.breadcrumb-style{
+    background-color: $bg-color-1;
+    opacity: 0.7;
+    padding: 0.4rem 0.5rem;
+    font-size: 0.8rem;
+}
+
+.breadcrumb-text{
+    color: $font-color;
+}
+.breadcrumb-item.active{
+    color: $font-color-active;
+}
+@media (max-width: 992px){
+    .nav-icon{
+        display: none;
+    }
 }
