@@ -1,0 +1,16 @@
+.hero{
+    position: relative; 
+    height: 100vh;
+    width: 100%;
+}
+.hero::before {    
+    content: "";
+    background-image: url('../assets/pineapple_bg_2.jpg');
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.8;
+}

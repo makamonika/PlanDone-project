@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { KanbanDataService } from './kanban-data.service';
+
 
 @Component({
   selector: 'app-kanban',
@@ -6,10 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./kanban.component.scss']
 })
 export class KanbanComponent implements OnInit {
-
-  constructor() { }
-
+  constructor(private kanbanDataService: KanbanDataService) { }
+  columns = this.kanbanDataService.columnData;
   ngOnInit(): void {
   }
-
+ 
 }

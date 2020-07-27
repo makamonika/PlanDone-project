@@ -1,38 +1,3 @@
-// ul {
-//     list-style-type: none;
-//     margin: 0;
-//     padding: 0;
-//     overflow: hidden;
-//     background-color: #7ecf9f;
-//   }
-//   ul.right{
-//       float: right;
-//   }
-  
-//   li {
-//     float: right;
-//   }
-//   li.left {
-//     float: left;
-//     display: block;
-//     color: white;
-//     text-align: center;
-//     padding: 14px 16px;
-//     text-decoration: none;
-//     font-weight: 600;
-//   }
-  
-//   li a {
-//     display: block;
-//     color: white;
-//     text-align: center;
-//     padding: 14px 16px;
-//     text-decoration: none;
-//   }
-//   li a:hover {
-//     background-color: #c6c5ca;
-//   }
-
 $bg-color-1: #7ecf9f;
 $bg-color-2: #fff5ef;
 $bg-color-3: #e7e5ee;
@@ -76,7 +41,6 @@ $font-color-active: rgba(0,0,0,.9);
 }
 
 .container{
-    background-color: $bg-color-3 ;
     padding: 10px 20px 10px 20px;
     margin: 0px;
     max-width: inherit;
@@ -84,9 +48,8 @@ $font-color-active: rgba(0,0,0,.9);
 
 
 .footer{
-    font-size: 0.7rem;
+    font-size: .7rem;
     padding: 5px 20px 5px 20px;
-    background-color: $bg-color-3;
 }
 .breadcrumb-style{
     background-color: $bg-color-1;
@@ -101,6 +64,10 @@ $font-color-active: rgba(0,0,0,.9);
 .breadcrumb-item.active{
     color: $font-color-active;
 }
+
+
+
+
 @media (max-width: 992px){
     .nav-icon{
         display: none;
