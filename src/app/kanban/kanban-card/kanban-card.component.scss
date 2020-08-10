@@ -1,0 +1,15 @@
+.kanban-card{
+    border-radius: 0.8rem;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+    font-size: 0.8rem;
+    padding:0.8rem;
+}
+
+.progress {
+    height: 10px;
+    background-color: rgba(231, 229, 238);;
+}
+
+.progress-bar {
+    background-color: rgba(126, 207, 159,0.5);
+}

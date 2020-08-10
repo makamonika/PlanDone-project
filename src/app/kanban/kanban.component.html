@@ -1,1 +1,20 @@
-<div *ngFor="let column of columns">{{column.name}}</div>
+<div class= "kanban-container">
+    <div *ngFor="let column of columns" class= "kanban-column">
+        <div class="kanban-column-header">{{column.name}}</div>
+        <div *ngIf="column.name == columnsNames.todo" class="kanban-column-body">
+            <div *ngFor = "let task of tasksToDo" (click)=openDialog(task.id)>
+                <app-kanban-card [cardTask]=task></app-kanban-card>
+            </div>
+        </div>
+        <div *ngIf="column.name == columnsNames.inprogress" class="kanban-column-body">
+            <div *ngFor = "let task of tasksInProgress" (click)=openDialog(task.id)>
+                <app-kanban-card [cardTask]=task></app-kanban-card>
+            </div>
+        </div>
+        <div *ngIf="column.name == columnsNames.done" class="kanban-column-body">
+            <div *ngFor = "let task of tasksDone" (click)=openDialog(task.id)>
+                <app-kanban-card [cardTask]=task></app-kanban-card>
+            </div>
+        </div>
+    </div>
+</div>

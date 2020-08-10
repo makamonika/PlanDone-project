@@ -1,0 +1,37 @@
+$bg-color-1: rgba(126, 207, 159,0.5);
+$bg-color-2: rgba(255, 245, 239, 0.3);
+$bg-color-3: rgba(231, 229, 238, 0.3);
+$font-color:rgba(44, 44, 44, 0.8);
+$font-color-hover:rgba(44, 44, 44, 1); 
+$font-color-active: rgba(0,0,0,.9);
+
+.kanban-container{
+    display: flex;
+    flex-direction: row;
+    min-height: 80vh;
+    justify-content: space-evenly;
+}
+
+.kanban-column{
+    min-width: 28%;
+    max-width: 30%;
+    min-height: 80%;
+    margin-bottom: 0.5rem;
+    border: 1px;
+    border-radius: 0.5rem;
+    //border-bottom-right-radius: 0.5rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: $bg-color-2;
+}
+
+.kanban-column-header{
+    background-color: $bg-color-1;
+    padding: 0.5rem;
+    text-align: center;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+
+.kanban-column-body{
+    padding: 0.5rem;
+}

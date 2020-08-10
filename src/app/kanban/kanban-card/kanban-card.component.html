@@ -1,0 +1,12 @@
+    <div class="kanban-card">
+       <div style="font-size: larger;"><b>Nazwa:</b> {{cardTask.name}}</div> 
+       <div><b>Początek:</b> {{cardTask.dataStart}}</div>
+       <div><b>Koniec:</b> {{cardTask.dataEnd}}</div> 
+       <div><b>Realizacja:</b>  {{cardTask.realization}} %
+         <div class="progress">
+            <div class="progress-bar" role="progressbar" [ngStyle]="{'width': cardTask.realization + '%'}" aria-valuenow=cardTask.realization aria-valuemin="0" aria-valuemax="100"></div>
+         </div>
+      </div> 
+       <div><b>Opis:</b> {{cardTask.description}}</div> 
+    </div>
+

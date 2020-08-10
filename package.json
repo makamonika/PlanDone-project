@@ -12,10 +12,12 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~9.1.12",
+    "@angular/cdk": "^10.1.2",
     "@angular/common": "~9.1.12",
     "@angular/compiler": "~9.1.12",
     "@angular/core": "~9.1.12",
     "@angular/forms": "~9.1.12",
+    "@angular/material": "^10.1.2",
     "@angular/platform-browser": "~9.1.12",
     "@angular/platform-browser-dynamic": "~9.1.12",
     "@angular/router": "~9.1.12",
@@ -23,6 +25,7 @@
     "bootstrap": "^4.5.0",
     "font-awesome": "^4.7.0",
     "jquery": "^3.5.1",
+    "moment": "^2.27.0",
     "rxjs": "~6.6.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
