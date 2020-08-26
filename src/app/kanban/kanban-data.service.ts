@@ -60,21 +60,11 @@ export class KanbanDataService {
     }
 
     getKanbanDataById(id: number): KanbanTask {
-      var retTask: KanbanTask;
-      this.tasks.forEach (task => 
-        {
-          if(task.id == id){
-            retTask = task;
-          }
-        });
-        return retTask;
+      return this.tasks.find(task => task.id == id)
     }
+
     updateTaskData(taskData: KanbanTask) {
-      this.tasks.forEach(task =>
-        {
-          if(task.id == taskData.id) {
-            task = taskData;
-          };
-        });
+      var idx: number = this.tasks.findIndex(task => task.id == taskData.id)
+      this.tasks[idx]=taskData;
     }
 }

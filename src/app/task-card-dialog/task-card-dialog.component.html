@@ -1,19 +1,37 @@
-<mat-dialog-content>
-
-    <p>{{taskData.name}}</p>
-
-
+<div mat-dialog-title class="heading">
+    <p>Edycja zadania: <strong>{{taskData.name}}</strong> </p>
+</div>
+<mat-dialog-content [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+        <input matInput
+        placeholder="Nazwa: "
+               formControlName ="name">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput
+        placeholder="Opis: "
+               formControlName ="description">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput
+                placeholder="Data rozpoczęcia: "
+               formControlName ="dataStart">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput
+                placeholder="Data zakończenia: "
+               formControlName ="dataEnd">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput
+                placeholder="Realizacja: "
+               formControlName ="realization">
+    </mat-form-field>
+    
 </mat-dialog-content>
 
 <mat-dialog-actions>
-
-    <button class="mat-raised-button">
-        Close
-    </button>
-
-    <button class="mat-raised-button mat-primary">
-        Save
-    </button>
-
+    <button type="button" class="btn btn-dark first" (click)="save()">Zapisz</button>
+    <button type="button" class="btn btn-dark" (click)="close()">Zamknij</button>
 </mat-dialog-actions>
 

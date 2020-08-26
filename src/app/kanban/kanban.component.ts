@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { KanbanDataService , columnsName} from './kanban-data.service';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { TaskCardDialogComponent } from '../task-card-dialog/task-card-dialog.component';
 
 
@@ -45,9 +45,9 @@ export class KanbanComponent implements OnInit {
   openDialog(taskId: number) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
-    dialogConfig.autoFocus = true;
-    dialogConfig.height= '300px';
-    dialogConfig.width= '300px';
+    dialogConfig.autoFocus = false;
+    dialogConfig.height= '80vh';
+    dialogConfig.width= '60vw';
     dialogConfig.data = {
       id: taskId
     };

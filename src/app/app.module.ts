@@ -7,6 +7,8 @@ import { KanbanComponent } from './kanban/kanban.component';
 import { TaskCardDialogComponent } from './task-card-dialog/task-card-dialog.component';
 import { KanbanCardComponent } from './kanban/kanban-card/kanban-card.component';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -21,8 +23,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     MatDialogModule,
+    MatInputModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule
-    
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
