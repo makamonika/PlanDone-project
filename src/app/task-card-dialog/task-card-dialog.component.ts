@@ -30,24 +30,24 @@ export class TaskCardDialogComponent implements OnInit {
     }
 
   ngOnInit(): void {
-  //   //this.form = this.fb.group({
-  // });
   }
 
   save() {
-    this.dialogRef.close(this.taskForm.value);
+    var formData = this.taskForm.value;
+    var newData: KanbanTask = {
+      id: this.taskData.id,
+      type: this.taskData.type,
+      name: formData.name,
+      description: formData.description,
+      dataStart: formData.dataStart,
+      dataEnd: formData.dataEnd,
+      realization: formData.realization
+    }
+    this.dialogRef.close(newData);
   }
 
   close() {
       this.dialogRef.close();
   }
 
-  updateName() {
-    //this.taskTitle.setValue('Nancy');
-  }
-
-  onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.warn('newvalue submited');
-  }
 }

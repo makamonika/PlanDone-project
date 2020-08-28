@@ -63,8 +63,10 @@ export class KanbanDataService {
       return this.tasks.find(task => task.id == id)
     }
 
-    updateTaskData(taskData: KanbanTask) {
-      var idx: number = this.tasks.findIndex(task => task.id == taskData.id)
-      this.tasks[idx]=taskData;
+    updateTaskData(data: KanbanTask) {
+      var idx: number = this.tasks.findIndex(task => task.id == data.id);
+      if(JSON.stringify(data) !== JSON.stringify(this.tasks[idx])){
+        this.tasks[idx]=data;
+      }
     }
 }

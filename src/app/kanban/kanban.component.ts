@@ -46,12 +46,22 @@ export class KanbanComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = false;
-    dialogConfig.height= '80vh';
+    dialogConfig.height= '85vh';
     dialogConfig.width= '60vw';
     dialogConfig.data = {
       id: taskId
     };
-    this.dialog.open(TaskCardDialogComponent, dialogConfig);
+
+   
+    const dialogRef = this.dialog.open(TaskCardDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(
+      (data) => {
+        if(data){
+          //console.log("Dialog output:", data);
+          this.kanbanDataService.updateTaskData(data);
+        }
+      }
+  );  
 }
 
   
