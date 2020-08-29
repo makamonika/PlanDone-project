@@ -12,8 +12,8 @@ export class KanbanTask {
   type: columnsName;
   name: string;
   description: string;
-  dataStart: any;
-  dataEnd: any;
+  dateStart: any;
+  dateEnd: any;
   realization: number;
 }
 
@@ -32,8 +32,8 @@ export class KanbanDataService {
         type: columnsName.inprogress,
         name: 'Dodać tablicę kaban',
         description: 'Frontend, Backend, Baza danych',
-        dataStart: moment("2020/07/23", "YYYY/MM/DD").format("DD/MM/YYYY"),
-        dataEnd:  moment("2020/07/23", "YYYY/MM/DD").format("DD/MM/YYYY"),
+        dateStart: moment("2020/07/23", "YYYY/MM/DD").format("DD/MM/YYYY"),
+        dateEnd:  moment("2020/07/23", "YYYY/MM/DD").format("DD/MM/YYYY"),
         realization: 20,
     },
     {
@@ -41,8 +41,8 @@ export class KanbanDataService {
         type: columnsName.todo,
         name: 'Zaimplementować kalendarz',
         description: 'Skorzystać z zewnętrznej biblioteki',
-        dataStart: moment("2020/07/23", "YYYY/MM/DD").format("DD/MM/YYYY"),
-        dataEnd:  moment("2020/07/23", "YYYY/MM/DD").format("DD/MM/YYYY"),
+        dateStart: moment("2020/07/23", "YYYY/MM/DD").format("DD/MM/YYYY"),
+        dateEnd:  moment("2020/07/23", "YYYY/MM/DD").format("DD/MM/YYYY"),
         realization: 0,
     },
     {
@@ -50,8 +50,8 @@ export class KanbanDataService {
         type: columnsName.done,
         name: 'Stworzyć główny layout',
         description: 'Nawigacja, menu, stopka',
-        dataStart: moment("2020/07/23", "YYYY/MM/DD").format("DD/MM/YYYY"),
-        dataEnd:  moment("2020/07/23", "YYYY/MM/DD").format("DD/MM/YYYY"),
+        dateStart: moment("2020/07/23", "YYYY/MM/DD").format("DD/MM/YYYY"),
+        dateEnd:  moment("2020/07/23", "YYYY/MM/DD").format("DD/MM/YYYY"),
         realization: 100,
     }];
 

@@ -43,4 +43,15 @@ button.first{
     font-size: 14px;
     border-width: 2px;
     opacity: 0.8;
+    cursor: pointer;
   }
+
+  .realization-input{
+    display: flex;
+    flex-direction: row;
+    width:30%;
+    margin-top:0.5rem;
+  }
+.input-part{
+  margin: auto;
+}

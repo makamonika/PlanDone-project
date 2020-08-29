@@ -23,13 +23,21 @@ export class TaskCardDialogComponent implements OnInit {
       this.taskForm = fb.group({
         name: [this.taskData.name],
         description: [this.taskData.description],
-        dataStart: [this.taskData.dataStart],
-        dataEnd:  [this.taskData.dataEnd],
+        dateStart: [this.taskData.dateStart],
+        dateEnd:  [this.taskData.dateEnd],
         realization: [this.taskData.realization],
       })
     }
 
   ngOnInit(): void {
+  }
+
+  add(){
+    this.taskForm.value.realization +=10;
+  }
+
+  sub(){
+    this.taskForm.value.realization -=10;
   }
 
   save() {
@@ -39,8 +47,8 @@ export class TaskCardDialogComponent implements OnInit {
       type: this.taskData.type,
       name: formData.name,
       description: formData.description,
-      dataStart: formData.dataStart,
-      dataEnd: formData.dataEnd,
+      dateStart: formData.dateStart,
+      dateEnd: formData.dateEnd,
       realization: formData.realization
     }
     this.dialogRef.close(newData);
