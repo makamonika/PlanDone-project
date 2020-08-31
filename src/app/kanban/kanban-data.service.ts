@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
+import { HttpClient } from '@angular/common/http';
+import { pipe, Observable } from 'rxjs';
 
 export enum columnsName {
-  todo = 'TODO',
-  inprogress = 'INPROGRESS',
-  done = 'DONE'
+  todo = 'todo',
+  inprogress = 'inprogress',
+  done = 'done'
 };
 
 export class KanbanTask {
@@ -23,12 +25,12 @@ export class KanbanTask {
 
 export class KanbanDataService {
 
-  constructor() { }
+  constructor( private http: HttpClient) { }
 
   columnData: object[] = [{name:columnsName.todo}, {name:columnsName.inprogress},{name: columnsName.done}]; 
   tasks: KanbanTask[] =[
     {
-        id: 1,
+        id: 4,
         type: columnsName.inprogress,
         name: 'Dodać tablicę kaban',
         description: 'Frontend, Backend, Baza danych',
@@ -37,7 +39,7 @@ export class KanbanDataService {
         realization: 20,
     },
     {
-        id: 2,
+        id:5,
         type: columnsName.todo,
         name: 'Zaimplementować kalendarz',
         description: 'Skorzystać z zewnętrznej biblioteki',
@@ -46,7 +48,7 @@ export class KanbanDataService {
         realization: 0,
     },
     {
-        id: 3,
+        id: 6,
         type: columnsName.done,
         name: 'Stworzyć główny layout',
         description: 'Nawigacja, menu, stopka',
@@ -55,8 +57,10 @@ export class KanbanDataService {
         realization: 100,
     }];
 
+    task2: KanbanTask[] = [];
     getKanbanData(): KanbanTask[]{
-      return this.tasks;
+      this.getData().subscribe(data => this.task2 = data);
+      return this.task2;
     }
 
     getKanbanDataById(id: number): KanbanTask {
@@ -69,4 +73,10 @@ export class KanbanDataService {
         this.tasks[idx]=data;
       }
     }
+
+    getData(): Observable<KanbanTask[]> {
+     return this.http.get<KanbanTask[]>('https://localhost:44310/api/TaskData/tasksList');
+    }
+
+
 }
