@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { KanbanDataService , columnsName} from './kanban-data.service';
+import { KanbanDataService , columnsName, KanbanTask} from './kanban-data.service';
 import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { TaskCardDialogComponent } from '../task-card-dialog/task-card-dialog.component';
 
@@ -12,17 +12,23 @@ import { TaskCardDialogComponent } from '../task-card-dialog/task-card-dialog.co
 export class KanbanComponent implements OnInit {
   constructor(private kanbanDataService: KanbanDataService,
     public dialog: MatDialog) { }
+
   columns = this.kanbanDataService.columnData;
   tasksDone = [];
   tasksInProgress = [];
   tasksToDo = [];
   columnsNames = columnsName;
+  taskToDialog:KanbanTask;
 
   ngOnInit(): void {
-    this.taskSelection();
+    this.tasksSelection();
   }
 
-  private taskSelection(){
+  private tasksSelection(){
+    this.tasksToDo = [];
+    this.tasksInProgress = [];
+    this.tasksDone = [];
+
     this.kanbanDataService.getData().subscribe(
       (data)=> {
         data.forEach(task => {
@@ -42,28 +48,51 @@ export class KanbanComponent implements OnInit {
             default: break;
           }
         });
-      })}
-  
-    openDialog(taskId: number) {
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.disableClose = false;
-      dialogConfig.autoFocus = false;
-      dialogConfig.height= '85vh';
-      dialogConfig.width= '60vw';
-      dialogConfig.data = {
-        id: taskId
-      };
+      })
+    }
+
+  //   private tasksReselection(taskType: string, taskId: number){
+  //   switch (taskType){
+  //     case columnsName.todo: {
+  //       var idx = this.tasksToDo.indexOf(task => task.Id == taskId);
+  //       this.tasksToDo[idx] = this.kanbanDataService.getTaskById(taskId)
+  //       break;
+  //     }
+  //     // case columnsName.inprogress: {
+  //     //   this.tasksInProgress.push(task);
+  //     //   break;
+  //     // }
+  //     // case columnsName.done: {
+  //     //   this.tasksDone.push(task);
+  //     //   break;
+  //     // }
+  //     default: break;
+  //   }
+  //   console.log(this.tasksToDo)
+  // }
+    openDialog(id: number) {
+      console.log(this.tasksInProgress);
+      this.kanbanDataService.getTaskById(id).subscribe((taskData=>{
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.disableClose = false;
+        dialogConfig.autoFocus = false;
+        dialogConfig.height= '85vh';
+        dialogConfig.width= '60vw';
+        dialogConfig.data = {
+          task: taskData
+        };
+        const dialogRef = this.dialog.open(TaskCardDialogComponent, dialogConfig);
+        dialogRef.afterClosed().subscribe(
+          () => {
+            this.tasksSelection();
+          }
+        );  
+      }))
+      
 
    
-    const dialogRef = this.dialog.open(TaskCardDialogComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(
-      (data) => {
-        if(data){
-          //console.log("Dialog output:", data);
-          this.kanbanDataService.updateTaskData(data);
-        }
-      }
-  );  
+    
+    
 }
 
   

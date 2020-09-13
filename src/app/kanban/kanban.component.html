@@ -1,6 +1,6 @@
 <div class= "kanban-container">
     <div *ngFor="let column of columns" class= "kanban-column">
-        <div class="kanban-column-header">{{column.name}}</div>
+        <div class="kanban-column-header">{{column.name | uppercase}}</div>
         <div *ngIf="column.name == columnsNames.todo" class="kanban-column-body">
             <div *ngFor = "let task of tasksToDo" (click)=openDialog(task.id)>
                 <app-kanban-card [cardTask]=task></app-kanban-card>

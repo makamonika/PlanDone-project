@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { pipe, Observable } from 'rxjs';
 
 export enum columnsName {
@@ -57,21 +57,20 @@ export class KanbanDataService {
         realization: 100,
     }];
 
-    task2: KanbanTask[] = [];
-    getKanbanData(): KanbanTask[]{
-      this.getData().subscribe(data => this.task2 = data);
-      return this.task2;
-    }
-
-    getKanbanDataById(id: number): KanbanTask {
-      return this.tasks.find(task => task.id == id)
+    
+    getTaskById(id: number): Observable<KanbanTask> {
+      let params = new HttpParams();
+      params = params.append('id', id.toString());
+      return this.http.get<KanbanTask>('https://localhost:44310/api/TaskData/task', {params: params});
     }
 
     updateTaskData(data: KanbanTask) {
-      var idx: number = this.tasks.findIndex(task => task.id == data.id);
-      if(JSON.stringify(data) !== JSON.stringify(this.tasks[idx])){
-        this.tasks[idx]=data;
-      }
+      // var idx: number = this.tasks.findIndex(task => task.id == data.id);
+      // if(JSON.stringify(data) !== JSON.stringify(this.tasks[idx])){
+      //   this.tasks[idx]=data;
+      // }]]
+      this.http.post<KanbanTask>('https://localhost:44310/api/TaskData/updatePlanDoneTask', data).subscribe(res => console.log(res));
+      return;
     }
 
     getData(): Observable<KanbanTask[]> {

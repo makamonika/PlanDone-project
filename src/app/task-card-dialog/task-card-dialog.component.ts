@@ -2,6 +2,8 @@ import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { KanbanDataService, KanbanTask } from '../kanban/kanban-data.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { ConstantPool } from '@angular/compiler';
+import { parse } from 'querystring';
 
 
 @Component({
@@ -13,23 +15,34 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 export class TaskCardDialogComponent implements OnInit {
   taskData: KanbanTask;
   taskForm: FormGroup;
-  
+  taskId;
+  taskDataRes: any[] = [];
+
   constructor(
     public dialogRef: MatDialogRef<TaskCardDialogComponent>, 
     private kanbanService: KanbanDataService,
     private fb: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) data) {
-      this.taskData = kanbanService.getKanbanDataById(data.id);
-      this.taskForm = fb.group({
-        name: [this.taskData.name],
-        description: [this.taskData.description],
-        dateStart: [this.taskData.dateStart],
-        dateEnd:  [this.taskData.dateEnd],
-        realization: [this.taskData.realization],
-      })
-    }
-
+    @Inject(MAT_DIALOG_DATA) data) 
+    {this.taskData = data.task}
+      
   ngOnInit(): void {
+    this.taskForm = this.fb.group({
+      id: [this.taskData.id],
+      type: [this.taskData.type],
+      name: [this.taskData.name],
+      description: [this.taskData.description],
+      dateStart: [this.taskData.dateStart],
+      dateEnd:  [this.taskData.dateEnd],
+      realization: [this.taskData.realization],
+    })
+    
+  }
+
+  private getTask(){
+    this.kanbanService.getTaskById(this.taskId).subscribe((dataRes)=>{
+      this.taskData = dataRes;
+      console.log(this.taskData);
+    })
   }
 
   add(){
@@ -41,16 +54,17 @@ export class TaskCardDialogComponent implements OnInit {
   }
 
   save() {
-    var formData = this.taskForm.value;
+    var formData = this.taskForm.value
     var newData: KanbanTask = {
-      id: this.taskData.id,
-      type: this.taskData.type,
+      id: formData.id,
+      type: formData.type,
       name: formData.name,
       description: formData.description,
       dateStart: formData.dateStart,
       dateEnd: formData.dateEnd,
       realization: formData.realization
     }
+    this.kanbanService.updateTaskData(newData);
     this.dialogRef.close(newData);
   }
 
