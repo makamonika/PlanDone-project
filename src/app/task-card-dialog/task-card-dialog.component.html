@@ -1,5 +1,6 @@
 <div mat-dialog-title class="heading">
-    <div style="display:inline-block"> <i class="fa fa-edit" style="font-size: 30px; padding: 7px 3px 7px 0px; vertical-align: middle;"></i><strong style="vertical-align: middle;"> Edycja zadania: </strong> </div>
+    <div style="display:inline-block"> <i class="fa fa-edit" style="font-size: 30px; padding: 7px 3px 7px 0px; vertical-align: middle;"></i>
+        <strong style="vertical-align: middle;"> {{taskData.name}}: </strong> </div>
 </div>
 <mat-dialog-content [formGroup]="taskForm">
     <mat-form-field>
@@ -8,9 +9,9 @@
                formControlName ="name">
     </mat-form-field>
     <mat-form-field>
-        <input matInput
+        <textarea matInput style="margin-top: 5px;"
         placeholder="Opis: "
-               formControlName ="description">
+               formControlName ="description"> </textarea>
     </mat-form-field>
     <mat-form-field>
         <input matInput
@@ -22,17 +23,26 @@
                 placeholder="Data zakończenia: "
                formControlName ="dateEnd">
     </mat-form-field>
-    <mat-form-field>
+    <!-- <mat-form-field>
         <div class="realization-input">
             <div class="input-part" (click)="sub()"><i class="fa fa-minus icon-border"> </i></div>
             <div class="input-part"><input matInput
                 placeholder="Realizacja: "
-               formControlName ="realization" style="text-align: center;"></div>
+                style="text-align: center;">{{taskData.realization}}</div>
             <div class="input-part" (click)="add()"> <i class="fa fa-plus icon-border"> </i></div>
         </div>
      
    
-    </mat-form-field>
+    </mat-form-field> -->
+    <div class="input-label">Realizacja:</div>
+    <div class="realization-input">
+        
+        <div (click)="sub()"><i class="fa fa-minus icon-border"></i></div>
+        <div class="input-part">
+            <div>{{taskData.realization}}</div> 
+        </div>
+        <div (click)="add()"><i class="fa fa-plus icon-border"></i></div>
+    </div>
     
 </mat-dialog-content>
 

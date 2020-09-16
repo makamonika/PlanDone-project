@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { KanbanDataService, KanbanTask } from '../kanban/kanban-data.service';
+import { columnsName, KanbanDataService, KanbanTask } from '../kanban/kanban-data.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { ConstantPool } from '@angular/compiler';
 import { parse } from 'querystring';
@@ -46,23 +46,27 @@ export class TaskCardDialogComponent implements OnInit {
   }
 
   add(){
-    this.taskForm.value.realization +=10;
+    if(this.taskData.realization<100){
+     this.taskData.realization +=5;
+    }
   }
 
   sub(){
-    this.taskForm.value.realization -=10;
+    if(this.taskData.realization>0){
+      this.taskData.realization -=5;
+    }
   }
 
   save() {
     var formData = this.taskForm.value
     var newData: KanbanTask = {
       id: formData.id,
-      type: formData.type,
+      type: this.checkTaskType(formData.type, this.taskData.realization),
       name: formData.name,
       description: formData.description,
       dateStart: formData.dateStart,
       dateEnd: formData.dateEnd,
-      realization: formData.realization
+      realization: this.taskData.realization
     }
     this.kanbanService.updateTaskData(newData);
     this.dialogRef.close(newData);
@@ -72,4 +76,18 @@ export class TaskCardDialogComponent implements OnInit {
       this.dialogRef.close();
   }
 
+  private checkTaskType(type: columnsName, realization: number): columnsName{
+    if(realization == 0 && type != columnsName.todo){
+      return columnsName.todo;
+    }
+    else if(realization == 100 && type != columnsName.done){
+      return columnsName.done;
+    }
+    else if( type != columnsName.inprogress){
+      return columnsName.inprogress;
+    }
+    else{
+        return type;
+      } 
+  }
 }

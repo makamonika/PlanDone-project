@@ -1,7 +1,7 @@
 $bg-color-1: rgba(126, 207, 159, 0.7);
 $bg-color-2: rgba(255, 245, 239, 0.3);
 $bg-color-3: rgba(231, 229, 238, 0.3);
-$font-color:rgba(44, 44, 44, 0.8);
+$font-color:rgba(44, 44, 44, 0.6);
 $font-color-hover:rgba(44, 44, 44, 1); 
 $font-color-active: rgba(0,0,0,.9);
 
@@ -15,6 +15,7 @@ $font-color-active: rgba(0,0,0,.9);
 mat-form-field {
     display: block;
     width: 70%;
+    font-family: inherit !important;
 }
 
 button.first{
@@ -49,9 +50,22 @@ button.first{
   .realization-input{
     display: flex;
     flex-direction: row;
-    width:30%;
+    width:20%;
     margin-top:0.5rem;
   }
 .input-part{
   margin: auto;
+  width:100%;
+  text-align: center;
+  border-bottom: 1px solid ;
+  border-color: $font-color;
 }
+.input-label{
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: $bg-color-1;
+}
+textarea{
+  height: auto !important;
+}
+
