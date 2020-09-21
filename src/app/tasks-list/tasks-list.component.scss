@@ -1,0 +1,46 @@
+$bg-color-1: rgba(126, 207, 159, 0.7);
+$bg-color-2: rgba(255, 245, 239, 0.3);
+$bg-color-3: rgba(231, 229, 238, 0.678);
+$bg-color-4:rgba(255, 255, 255, 0.4);
+
+$font-color:rgba(44, 44, 44, 0.6);
+$font-color-hover:rgba(44, 44, 44, 0.7); 
+$font-color-active: rgba(0,0,0,.9);
+
+.navbar-light{
+    background-color: $bg-color-4;
+    border-radius: 0.8rem;
+}
+
+.search-input{
+    height: 2rem;
+}
+
+.end{
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.new-task-btn{
+    margin-right: 2rem;
+    color: $font-color;
+    border-radius:1rem;
+    cursor: pointer;
+}
+.new-task-btn:hover{
+    
+    & span{
+        color: $font-color-hover;
+        font-size: larger;
+    }
+}
+.nav-icon{
+    opacity: 0.6;
+    border: thin;
+    border-style: solid;
+    border-radius: 3rem;
+    padding: 0.35rem;
+    margin: 0.3rem;
+    color: inherit;
+}

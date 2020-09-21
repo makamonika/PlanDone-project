@@ -31,8 +31,9 @@ export class KanbanComponent implements OnInit {
 
     this.kanbanDataService.getData().subscribe(
       (data)=> {
+        console.log(data);
         data.forEach(task => {
-          switch (task.type){
+          switch (task.kanbanType){
             case columnsName.todo: {
               this.tasksToDo.push(task);
               break;
@@ -48,6 +49,7 @@ export class KanbanComponent implements OnInit {
             default: break;
           }
         });
+        
       })
     }
 

@@ -2,9 +2,9 @@ import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { columnsName, KanbanDataService, KanbanTask } from '../kanban/kanban-data.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import { ConstantPool } from '@angular/compiler';
-import { parse } from 'querystring';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';  
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-task-card-dialog',
@@ -16,7 +16,7 @@ export class TaskCardDialogComponent implements OnInit {
   taskData: KanbanTask;
   taskForm: FormGroup;
   taskId;
-  taskDataRes: any[] = [];
+  
 
   constructor(
     public dialogRef: MatDialogRef<TaskCardDialogComponent>, 
@@ -28,7 +28,7 @@ export class TaskCardDialogComponent implements OnInit {
   ngOnInit(): void {
     this.taskForm = this.fb.group({
       id: [this.taskData.id],
-      type: [this.taskData.type],
+      type: [this.taskData.kanbanType],
       name: [this.taskData.name],
       description: [this.taskData.description],
       dateStart: [this.taskData.dateStart],
@@ -58,15 +58,17 @@ export class TaskCardDialogComponent implements OnInit {
   }
 
   save() {
-    var formData = this.taskForm.value
+    var formData = this.taskForm.value;
+   
     var newData: KanbanTask = {
       id: formData.id,
-      type: this.checkTaskType(formData.type, this.taskData.realization),
+      kanbanType: this.checkTaskType(formData.type, this.taskData.realization),
       name: formData.name,
       description: formData.description,
       dateStart: formData.dateStart,
-      dateEnd: formData.dateEnd,
-      realization: this.taskData.realization
+      dateEnd:  formData.dateEnd,
+      realization: this.taskData.realization,
+      organizationType: this.taskData.organizationType
     }
     this.kanbanService.updateTaskData(newData);
     this.dialogRef.close(newData);

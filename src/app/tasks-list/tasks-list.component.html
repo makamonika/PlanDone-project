@@ -1,0 +1,36 @@
+<nav class="navbar navbar-light justify-content-between">
+  <div class="end">
+    <div class="new-task-btn">
+      <i class="fa fa-plus nav-icon"></i> <span>Nowe zadanie</span>
+     </div>
+    <form class="form-inline">
+      <input class="form-control search-input mr-sm-2" type="search" placeholder="Zadanie" aria-label="Search">
+      <button class="btn btn-outline-success btn-sm my-2 my-sm-0" type="submit"><div>Szukaj</div></button>
+    </form>
+  </div>
+  
+</nav>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Nazwa</th>
+        <th scope="col">Realizacja</th>
+        <th scope="col">Początek</th>
+        <th scope="col">Koniec</th>
+        <th scope="col">Typ</th>
+        <th scope="col">Opis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of Tasks">
+        <th scope="row"></th>
+        <td>{{task.name}}</td>
+        <td>{{task.realization}}%</td>
+        <td>{{task.dateStart}}</td>
+        <td>{{task.dateEnd}}</td>
+        <td>{{task.organizationType}}</td>
+        <td>+</td>
+      </tr>
+    </tbody>
+  </table>
