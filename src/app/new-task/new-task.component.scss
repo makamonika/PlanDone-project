@@ -68,17 +68,10 @@ button.first{
 textarea{
   height: auto !important;
 }
+
 .mat-option.mat-selected:not(.mat-option-disabled){
   color: $bg-color-1 !important;
   font-weight: bold;
-}
-
-.mat-select{
-  font-family: inherit !important;
-}
-
-.mat-option{
-  font-family: inherit !important;
 }
 
 .mat-select-arrow{

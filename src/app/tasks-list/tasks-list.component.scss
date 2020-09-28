@@ -1,4 +1,4 @@
-$bg-color-1: rgba(126, 207, 159, 0.7);
+$bg-color-1: rgba(126, 207, 159, 0.8);
 $bg-color-2: rgba(255, 245, 239, 0.3);
 $bg-color-3: rgba(231, 229, 238, 0.678);
 $bg-color-4:rgba(255, 255, 255, 0.4);
@@ -43,4 +43,19 @@ $font-color-active: rgba(0,0,0,.9);
     padding: 0.35rem;
     margin: 0.3rem;
     color: inherit;
+}
+
+.my-btn-color{
+    border-color: $bg-color-1 !important;
+    color: $bg-color-1 !important;
+}
+
+.my-btn-color:hover{
+    background-color: $bg-color-1 !important;
+    color: white !important;
+}
+
+.description{
+    display: flex;
+    flex-direction: row;
 }

@@ -1,10 +1,12 @@
 import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { columnsName, KanbanDataService, KanbanTask } from '../kanban/kanban-data.service';
+import { columnsName, KanbanDataService, KanbanTask, OrgnizationType } from '../kanban/kanban-data.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';  
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import * as moment from 'moment';
+import {MatSelectModule} from '@angular/material/select'; 
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-task-card-dialog',
@@ -15,6 +17,7 @@ import * as moment from 'moment';
 export class TaskCardDialogComponent implements OnInit {
   taskData: KanbanTask;
   taskForm: FormGroup;
+  organizationTypes: OrgnizationType[] = [];
   taskId;
   
 
@@ -22,18 +25,31 @@ export class TaskCardDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<TaskCardDialogComponent>, 
     private kanbanService: KanbanDataService,
     private fb: FormBuilder,
+    private datePipe: DatePipe,
     @Inject(MAT_DIALOG_DATA) data) 
     {this.taskData = data.task}
       
   ngOnInit(): void {
+    this.kanbanService.getOrganizationTypes().subscribe((data) =>{
+      for(var i in data){
+        var orgType = new OrgnizationType();
+        orgType.id = parseInt(i);
+        orgType.name = data[i];
+        this.organizationTypes.push(orgType);
+      }
+    });
+
     this.taskForm = this.fb.group({
       id: [this.taskData.id],
       type: [this.taskData.kanbanType],
       name: [this.taskData.name],
       description: [this.taskData.description],
       dateStart: [this.taskData.dateStart],
-      dateEnd:  [this.taskData.dateEnd],
+      dateEnd: [this.taskData.dateEnd],
+     // dateStart: [this.datePipe.transform(new Date(this.taskData.dateStart),"yyyy-MM-dd")],
+     // dateEnd: [this.datePipe.transform(new Date(this.taskData.dateEnd),"yyyy-MM-dd")],
       realization: [this.taskData.realization],
+      organizationType: [this.taskData.organizationType]
     })
     
   }
@@ -68,10 +84,10 @@ export class TaskCardDialogComponent implements OnInit {
       dateStart: formData.dateStart,
       dateEnd:  formData.dateEnd,
       realization: this.taskData.realization,
-      organizationType: this.taskData.organizationType
+      organizationType: formData.organizationType
     }
-    this.kanbanService.updateTaskData(newData);
-    this.dialogRef.close(newData);
+    this.kanbanService.updateTaskData(newData).subscribe(()=>this.dialogRef.close(true));
+    
   }
 
   close() {

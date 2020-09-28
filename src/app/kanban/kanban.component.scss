@@ -1,6 +1,8 @@
 $bg-color-1: rgba(126, 207, 159,0.5);
 $bg-color-2: rgba(255, 245, 239, 0.3);
 $bg-color-3: rgba(231, 229, 238, 0.3);
+$bg-color-4:rgba(255, 255, 255, 0.4);
+
 $font-color:rgba(44, 44, 44, 0.8);
 $font-color-hover:rgba(44, 44, 44, 1); 
 $font-color-active: rgba(0,0,0,.9);
@@ -34,4 +36,24 @@ $font-color-active: rgba(0,0,0,.9);
 
 .kanban-column-body{
     padding: 0.5rem;
+}
+
+.navbar-light{
+    background-color: $bg-color-4;
+    border-radius: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.search-input{
+    height: 2rem;
+}
+
+.end{
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.mat-form-field-infix {
+    padding: 0.5rem 0 0.5rem 0 !important;
 }

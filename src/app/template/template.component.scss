@@ -19,9 +19,11 @@ $font-color-active: rgba(0,0,0,.9);
 }
 .nav-headings{
     color: $font-color !important;
+    cursor: pointer;
 }
 .active > .nav-headings{
     color: $font-color-active !important;
+    cursor: default;
 }
 .nav-headings:hover {
     color: $font-color-hover;

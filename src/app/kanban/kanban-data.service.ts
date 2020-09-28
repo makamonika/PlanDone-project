@@ -20,6 +20,11 @@ export class KanbanTask {
   organizationType: string;
 }
 
+export class OrgnizationType{
+  id: number;
+  name: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -65,18 +70,22 @@ export class KanbanDataService {
       return this.http.get<KanbanTask>('https://localhost:44310/api/TaskData/task', {params: params});
     }
 
-    updateTaskData(data: KanbanTask) {
-      // var idx: number = this.tasks.findIndex(task => task.id == data.id);
-      // if(JSON.stringify(data) !== JSON.stringify(this.tasks[idx])){
-      //   this.tasks[idx]=data;
-      // }]]
-      this.http.post<KanbanTask>('https://localhost:44310/api/TaskData/updatePlanDoneTask', data).subscribe(res => console.log(res));
-      return;
+    updateTaskData(data: KanbanTask): Observable<any> {
+      return this.http.post<KanbanTask>('https://localhost:44310/api/TaskData/updatePlanDoneTask', data);
+      
     }
 
     getData(): Observable<KanbanTask[]> {
      return this.http.get<KanbanTask[]>('https://localhost:44310/api/TaskData/tasksList');
     }
 
+    getOrganizationTypes(): Observable<Object>{
+      return this.http.get<Object>('https://localhost:44310/api/TaskData/organizationTypesList');
+    }
+
+    insertNewTask(data: KanbanTask) {
+      this.http.post<KanbanTask>('https://localhost:44310/api/TaskData/addNewTask', data).subscribe(res => console.log(res));
+      return;
+    }
 
 }

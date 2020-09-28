@@ -1,13 +1,32 @@
+<nav class="navbar navbar-light justify-content-between">
+    <div>
+      <form class="form-inline">
+          <label>Pokaż zadania od:</label>
+          <mat-form-field appearance="outline">
+            <input matInput [matDatepicker]="pickerS">
+            <mat-datepicker-toggle matSuffix [for]="pickerS"></mat-datepicker-toggle>
+            <mat-datepicker #pickerS></mat-datepicker>
+          </mat-form-field>
+          <label>do:</label>
+          <mat-form-field class="example-full-width" appearance="outline">
+            <input matInput [matDatepicker]="pickerE">
+            <mat-datepicker-toggle matSuffix [for]="pickerE"></mat-datepicker-toggle>
+            <mat-datepicker #pickerE></mat-datepicker>
+          </mat-form-field>
+       </form>
+    </div>
+    
+  </nav>
 <div class= "kanban-container">
     <div *ngFor="let column of columns" class= "kanban-column">
         <div class="kanban-column-header">{{column.name | uppercase}}</div>
         <div *ngIf="column.name == columnsNames.todo" class="kanban-column-body">
-            <div *ngFor = "let task of tasksToDo" (click)=openDialog(task.id)>
+            <div *ngFor = "let task of tasksToDo">
                 <app-kanban-card [cardTask]=task></app-kanban-card>
             </div>
         </div>
         <div *ngIf="column.name == columnsNames.inprogress" class="kanban-column-body">
-            <div *ngFor = "let task of tasksInProgress" (click)=openDialog(task.id)>
+            <div *ngFor = "let task of tasksInProgress">
                 <app-kanban-card [cardTask]=task></app-kanban-card>
             </div>
         </div>

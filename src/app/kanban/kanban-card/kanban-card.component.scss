@@ -13,3 +13,32 @@
 .progress-bar {
     background-color: rgba(126, 207, 159,0.5);
 }
+
+.icon-border{
+    border-style: solid;
+    border-radius: 24px;
+    padding: 4px 6px;
+    font-size: 14px;
+    border-width: 1px;
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
+  .actions{
+      display: flex;
+      flex-direction: row;
+  }
+  .progressBtns{
+      align-self:center;
+      margin:auto;
+        display: flex;
+        flex-direction: row;
+    }
+.description{
+    margin-left: 2rem;
+}
+
+#edit{
+    align-self: end;
+    margin-right: 2rem;
+}

@@ -14,7 +14,30 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { TasksListComponent } from './tasks-list/tasks-list.component';
+import { NewTaskComponent } from './new-task/new-task.component';
+import {DatePipe} from '@angular/common';
+import {MatSelectModule} from '@angular/material/select'; 
+import { RouterModule, Routes} from '@angular/router';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
+
+const appRoutes: Routes = [
+  {
+    path: 'TasksList', 
+    component: TasksListComponent
+  },
+  {
+    path: 'Kanban', 
+    component: KanbanComponent
+  },
+  {
+    path: '',
+    redirectTo: '/Kanban',
+    pathMatch: 'full'
+  }
+  
+
+]
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +46,7 @@ import { TasksListComponent } from './tasks-list/tasks-list.component';
     KanbanCardComponent,
     TaskCardDialogComponent,
     TasksListComponent,
-    
+    NewTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -34,10 +57,14 @@ import { TasksListComponent } from './tasks-list/tasks-list.component';
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSelectModule,
+    MatTooltipModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

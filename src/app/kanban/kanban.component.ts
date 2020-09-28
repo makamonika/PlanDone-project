@@ -4,6 +4,7 @@ import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { TaskCardDialogComponent } from '../task-card-dialog/task-card-dialog.component';
 
 
+
 @Component({
   selector: 'app-kanban',
   templateUrl: './kanban.component.html',
@@ -73,7 +74,6 @@ export class KanbanComponent implements OnInit {
   //   console.log(this.tasksToDo)
   // }
     openDialog(id: number) {
-      console.log(this.tasksInProgress);
       this.kanbanDataService.getTaskById(id).subscribe((taskData=>{
         const dialogConfig = new MatDialogConfig();
         dialogConfig.disableClose = false;
@@ -85,16 +85,13 @@ export class KanbanComponent implements OnInit {
         };
         const dialogRef = this.dialog.open(TaskCardDialogComponent, dialogConfig);
         dialogRef.afterClosed().subscribe(
-          () => {
-            this.tasksSelection();
+          (res) => {
+            if(res){
+              this.tasksSelection();            
+           }
           }
         );  
       }))
-      
-
-   
-    
-    
 }
 
   
