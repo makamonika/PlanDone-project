@@ -54,6 +54,32 @@ $font-color-active: rgba(0,0,0,.9);
     flex-direction: row;
 }
 
-.mat-form-field-infix {
-    padding: 0.5rem 0 0.5rem 0 !important;
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 0em;
 }
+
+
+::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 0em;
+}
+
+// ::ng-deep input.mat-input-element.mat-form-field-autofill-control {
+//             margin-top: 0em !important;
+//         }
+
+// ::ng-deep .mat-datepicker-input-container {
+//     width: 100px;
+//     height: 100px !important;
+// }
+
+.date-picker{
+    width: 150px !important;
+    margin: 0px 10px !important;
+}
+
+.date-input{
+    margin-bottom: 15px !important;
+    vertical-align: middle !important;
+}
+
