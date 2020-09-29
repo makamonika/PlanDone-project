@@ -12,14 +12,23 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { NewTaskComponent } from './new-task/new-task.component';
 import {DatePipe} from '@angular/common';
 import {MatSelectModule} from '@angular/material/select'; 
 import { RouterModule, Routes} from '@angular/router';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
+export const MY_DATE_FORMATS = {
+  parse: {
+    dateInput: 'L',
+  },
+  display: {
+    dateInput: 'L'
+  },
+};
 
 const appRoutes: Routes = [
   {
@@ -64,7 +73,9 @@ const appRoutes: Routes = [
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
-    DatePipe
+    DatePipe,
+    {provide: MAT_DATE_LOCALE, useValue: 'pl-PL'},
+    {provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS},
   ],
   bootstrap: [AppComponent]
 })

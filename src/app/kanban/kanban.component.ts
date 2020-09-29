@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { KanbanDataService , columnsName, KanbanTask} from './kanban-data.service';
 import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { TaskCardDialogComponent } from '../task-card-dialog/task-card-dialog.component';
+import { FormControl } from '@angular/forms';
+import * as moment from 'moment';
 
 
 
@@ -10,16 +12,21 @@ import { TaskCardDialogComponent } from '../task-card-dialog/task-card-dialog.co
   templateUrl: './kanban.component.html',
   styleUrls: ['./kanban.component.scss']
 })
-export class KanbanComponent implements OnInit {
-  constructor(private kanbanDataService: KanbanDataService,
-    public dialog: MatDialog) { }
 
+
+export class KanbanComponent implements OnInit {
+  
   columns = this.kanbanDataService.columnData;
   tasksDone = [];
   tasksInProgress = [];
   tasksToDo = [];
   columnsNames = columnsName;
   taskToDialog:KanbanTask;
+  dateStart = new FormControl(moment());
+  dateEnd = new FormControl(moment());
+
+  constructor(private kanbanDataService: KanbanDataService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.tasksSelection();

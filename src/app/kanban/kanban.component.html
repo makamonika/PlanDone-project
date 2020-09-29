@@ -1,19 +1,19 @@
 <nav class="navbar navbar-light justify-content-between">
     <div>
-      <div class="form-inline">
+      <form class="form-inline">
           <label>Pokaż zadania od:</label>
           <mat-form-field appearance="outline" class="date-picker"> 
-            <input matInput [matDatepicker]="pickerS" class="date-input">
-            <mat-datepicker-toggle matSuffix [for]="pickerS"></mat-datepicker-toggle>
+            <input matInput [matDatepicker]="pickerS" class="date-input" [formControl]="dateStart">
+            <mat-datepicker-toggle matSuffix [for]="pickerS" ></mat-datepicker-toggle>
             <mat-datepicker #pickerS></mat-datepicker>
           </mat-form-field>
           <label>do:</label>
           <mat-form-field class="date-picker" appearance="outline">
-            <input matInput [matDatepicker]="pickerE" class="date-input">
+            <input matInput [matDatepicker]="pickerE" class="date-input" [formControl]="dateEnd">
             <mat-datepicker-toggle matSuffix [for]="pickerE"></mat-datepicker-toggle>
             <mat-datepicker #pickerE></mat-datepicker>
           </mat-form-field>
-        </div>
+        </form>
     </div>
     
   </nav>
