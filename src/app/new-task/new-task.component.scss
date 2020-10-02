@@ -23,36 +23,36 @@ button.first{
     margin-right: 0.8rem;
 }
 
-  .mat-form-field-label{
-    font-size: 1.5rem !important;
-    font-weight: 600 !important;
-    color: $bg-color-1 !important;
-  }
+.mat-form-field-label{
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  color: $bg-color-1 !important;
+}
 
-  .mat-form-field-ripple{
-    background-color: $bg-color-1 !important;
-  }
+.mat-form-field-ripple{
+  background-color: $bg-color-1 !important;
+}
 
-  input{
-      margin-top: 0.5rem !important;
-  }
+input{
+    margin-top: 0.5rem !important;
+}
 
-  .icon-border{
-    border-style: solid;
-    border-radius: 40px;
-    padding: 4px 6px;
-    font-size: 14px;
-    border-width: 2px;
-    opacity: 0.8;
-    cursor: pointer;
-  }
+.icon-border{
+  border-style: solid;
+  border-radius: 40px;
+  padding: 4px 6px;
+  font-size: 14px;
+  border-width: 2px;
+  opacity: 0.8;
+  cursor: pointer;
+}
 
-  .realization-input{
-    display: flex;
-    flex-direction: row;
-    width:20%;
-    margin-top:0.5rem;
-  }
+.realization-input{
+  display: flex;
+  flex-direction: row;
+  width:20%;
+  margin-top:0.5rem;
+}
 .input-part{
   margin: auto;
   width:100%;

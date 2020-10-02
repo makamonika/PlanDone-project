@@ -10,13 +10,13 @@
     </mat-form-field>
     <div class="input-label">Typ:</div>
     <mat-form-field>
-        <mat-select style
+        <mat-select
                 formControlName ="organizationType">
           <mat-option *ngFor="let type of organizationTypes" [value]="type.name">
             {{type.name}}
           </mat-option>
         </mat-select>
-      </mat-form-field>
+    </mat-form-field>
     <mat-form-field>
         <textarea matInput style="margin-top: 5px;"
         placeholder="Opis: "

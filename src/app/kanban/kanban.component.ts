@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { KanbanDataService , columnsName, KanbanTask} from './kanban-data.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { KanbanDataService , columnsName, KanbanTask, OrgnizationType} from './kanban-data.service';
 import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { TaskCardDialogComponent } from '../task-card-dialog/task-card-dialog.component';
 import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { Subscription } from 'rxjs';
 
 
 
@@ -14,48 +16,82 @@ import * as moment from 'moment';
 })
 
 
-export class KanbanComponent implements OnInit {
+export class KanbanComponent implements OnInit, OnDestroy {
   
   columns = this.kanbanDataService.columnData;
   tasksDone = [];
   tasksInProgress = [];
   tasksToDo = [];
   columnsNames = columnsName;
-  taskToDialog:KanbanTask;
-  dateStart = new FormControl(moment());
-  dateEnd = new FormControl(moment());
+  taskToDialog: KanbanTask;
+  organizationTypes: OrgnizationType[] = [];
+  
+  
+  selectedStart: moment.Moment = moment(Date.now());
+  selectedEnd: moment.Moment = moment(this.selectedStart).add(2, 'M');
+  dateStart = new FormControl(this.selectedStart);
+  dateEnd = new FormControl(this.selectedEnd);
+  organizationType = new FormControl();
+  subscription: Subscription;
 
+  
   constructor(private kanbanDataService: KanbanDataService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog) { 
+      this.kanbanDataService.getOrganizationTypes().subscribe((data) =>{
+        for(var i in data){
+          var orgType = new OrgnizationType();
+          orgType.id = parseInt(i);
+          orgType.name = data[i];
+          this.organizationTypes.push(orgType);
+        }
+      });
+    }
 
   ngOnInit(): void {
+
+    this.subscription = this.kanbanDataService.taskDataChaned$.subscribe(()=>{
+        this.tasksSelection();
+        console.log('refreshed');
+      });
     this.tasksSelection();
+    
   }
+
+  public dateStartSelected() {
+     this.selectedStart = moment(this.dateStart.value.toJSON().split('T')[0]);
+     this.tasksSelection();
+  }
+  public dateEndSelected() {
+    this.selectedEnd = moment(this.dateEnd.value.toJSON().split('T')[0]);
+    this.tasksSelection();
+ }
+
 
   private tasksSelection(){
     this.tasksToDo = [];
     this.tasksInProgress = [];
     this.tasksDone = [];
-
     this.kanbanDataService.getData().subscribe(
       (data)=> {
-        console.log(data);
         data.forEach(task => {
-          switch (task.kanbanType){
-            case columnsName.todo: {
-              this.tasksToDo.push(task);
-              break;
+          if(moment(task.dateEnd).isBetween(this.selectedStart, this.selectedEnd)){
+            switch (task.kanbanType){
+              case columnsName.todo: {
+                this.tasksToDo.push(task);
+                break;
+              }
+              case columnsName.inprogress: {
+                this.tasksInProgress.push(task);
+                break;
+              }
+              case columnsName.done: {
+                this.tasksDone.push(task);
+                break;
+              }
+              default: break;
             }
-            case columnsName.inprogress: {
-              this.tasksInProgress.push(task);
-              break;
-            }
-            case columnsName.done: {
-              this.tasksDone.push(task);
-              break;
-            }
-            default: break;
           }
+          
         });
         
       })
@@ -91,15 +127,18 @@ export class KanbanComponent implements OnInit {
           task: taskData
         };
         const dialogRef = this.dialog.open(TaskCardDialogComponent, dialogConfig);
-        dialogRef.afterClosed().subscribe(
-          (res) => {
+        dialogRef.afterClosed().subscribe((res) => {
             if(res){
               this.tasksSelection();            
            }
           }
         );  
       }))
-}
+    }
+
+    ngOnDestroy(){
+      this.subscription.unsubscribe();
+    }
 
   
  

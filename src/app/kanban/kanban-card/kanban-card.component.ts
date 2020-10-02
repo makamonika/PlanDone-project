@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import * as moment from 'moment';
 import { Observable, Subject } from 'rxjs';
 import { TaskCardDialogComponent } from 'src/app/task-card-dialog/task-card-dialog.component';
 import { KanbanDataService, KanbanTask } from '../kanban-data.service';
+import { KanbanComponent } from '../kanban.component';
 
 @Component({
   selector: 'app-kanban-card',
@@ -25,15 +27,17 @@ export class KanbanCardComponent implements OnInit {
   add(){
     if(this.task.realization<100){
       this.task.realization +=5;
-      this.kanbanDataService.updateTaskData(this.task).subscribe(res => console.log(res));
+      this.task.kanbanType = this.kanbanDataService.checkTaskType(this.task.kanbanType, this.task.realization);
+      this.kanbanDataService.updateTaskData(this.task).subscribe(() => this.kanbanDataService.taskChanged());
      }
   }
 
   sub(){
     if(this.task.realization>0){
       this.task.realization -=5;
-      this.kanbanDataService.updateTaskData(this.task).subscribe(res => console.log(res)); // date format problem
-     }
+      this.task.kanbanType = this.kanbanDataService.checkTaskType(this.task.kanbanType, this.task.realization);
+      this.kanbanDataService.updateTaskData(this.task).subscribe(() => this.kanbanDataService.taskChanged()); 
+    }
   }
   showDescription(){
         this.showMore.next(true);
@@ -54,14 +58,13 @@ export class KanbanCardComponent implements OnInit {
         task: taskData
       };
       const dialogRef = this.dialog.open(TaskCardDialogComponent, dialogConfig);
-      dialogRef.afterClosed().subscribe(
-        (res) => {
-          if(res){
-            //this.tasksSelection();            
-         }
-        }
-      );  
-  }))
+      dialogRef.afterClosed().subscribe((response) => {
+        if(response){
+          this.kanbanDataService.taskChanged();
+        }  
+      })
+      //TODO check if taskData has any changes, if yes send proper value
+    }))
 }
  
 

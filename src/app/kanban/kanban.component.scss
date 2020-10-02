@@ -76,6 +76,7 @@ $font-color-active: rgba(0,0,0,.9);
 .date-picker{
     width: 150px !important;
     margin: 0px 10px !important;
+    font-family: inherit !important;
 }
 
 .date-input{
@@ -83,3 +84,23 @@ $font-color-active: rgba(0,0,0,.9);
     vertical-align: middle !important;
 }
 
+#nav-label{
+    margin-right: 10px;
+}
+
+::ng-deep mat-form-field.date-picker{
+    width: 150px !important;
+    margin: 0px 10px !important;
+    font-family: inherit !important;
+}
+::ng-deep .mat-option.mat-selected:not(.mat-option-disabled){
+    color: $bg-color-1 !important;
+    font-weight: bold;
+}
+  
+::ng-deep .mat-select-arrow{
+    color: $bg-color-1 !important;
+}
+::ng-deep .mat-calendar-body-selected {
+    background-color: $bg-color-1 !important;
+}

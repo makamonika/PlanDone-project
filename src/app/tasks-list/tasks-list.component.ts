@@ -23,7 +23,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute) {
     this.routeQueryParams$ = this.route.queryParams.subscribe(params => {
       if (params['newTask']) {
-        this.openDialog();
+        this.openNewTaskDialog();
       }
     });
   }
@@ -32,7 +32,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
     this.kanbanService.getData().subscribe(tasks => this.Tasks = tasks);
   }
 
-  openDialog() {
+  openNewTaskDialog() {
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = false;
       dialogConfig.autoFocus = false;
@@ -45,6 +45,26 @@ export class TasksListComponent implements OnInit, OnDestroy {
       //   }
       // );  
     }
+
+    openTaskDialog(id: number){
+        this.kanbanService.getTaskById(id).subscribe((taskData=>{
+           const dialogConfig = new MatDialogConfig();
+           dialogConfig.disableClose = false;
+           dialogConfig.autoFocus = false;
+           dialogConfig.height= '85vh';
+           dialogConfig.width= '60vw';
+           dialogConfig.data = {
+             task: taskData
+           };
+           const dialogRef = this.dialog.open(TaskCardDialogComponent, dialogConfig);
+           dialogRef.afterClosed().subscribe((response) => {
+             if(response){
+              this.kanbanService.getData().subscribe(tasks => this.Tasks = tasks);
+             }  
+           })
+           //TODO check if taskData has any changes, if yes send proper value
+         }))
+     }
 
     showDescription()
     {

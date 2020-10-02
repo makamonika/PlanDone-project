@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { pipe, Observable } from 'rxjs';
+import { pipe, Observable, Subject } from 'rxjs';
+import { TaskCardDialogComponent } from '../task-card-dialog/task-card-dialog.component';
 
 export enum columnsName {
   todo = 'todo',
@@ -31,10 +32,14 @@ export class OrgnizationType{
 
 export class KanbanDataService {
 
-  constructor( private http: HttpClient) { }
-
   columnData: object[] = [{name:columnsName.todo}, {name:columnsName.inprogress},{name: columnsName.done}]; 
   tasks: KanbanTask[] =[];
+  private taskDataChanged = new Subject<boolean> ();
+  taskDataChaned$ = this.taskDataChanged.asObservable();
+
+  constructor( private http: HttpClient) { }
+
+  
     // {
     //     id: 4,
     //     type: columnsName.inprogress,
@@ -63,7 +68,9 @@ export class KanbanDataService {
     //     realization: 100,
     // }];
 
-    
+    taskChanged(){
+      this.taskDataChanged.next(true);
+    }
     getTaskById(id: number): Observable<KanbanTask> {
       let params = new HttpParams();
       params = params.append('id', id.toString());
@@ -72,7 +79,6 @@ export class KanbanDataService {
 
     updateTaskData(data: KanbanTask): Observable<any> {
       return this.http.post<KanbanTask>('https://localhost:44310/api/TaskData/updatePlanDoneTask', data);
-      
     }
 
     getData(): Observable<KanbanTask[]> {
@@ -86,6 +92,21 @@ export class KanbanDataService {
     insertNewTask(data: KanbanTask) {
       this.http.post<KanbanTask>('https://localhost:44310/api/TaskData/addNewTask', data).subscribe(res => console.log(res));
       return;
+    }
+
+    checkTaskType(type: columnsName, realization: number): columnsName{
+      if(realization == 0 && type != columnsName.todo){
+        return columnsName.todo;
+      }
+      else if(realization == 100 && type != columnsName.done){
+        return columnsName.done;
+      }
+      else if(realization != 100 && realization !=0 && type != columnsName.inprogress){
+        return columnsName.inprogress;
+      }
+      else{
+          return type;
+      } 
     }
 
 }

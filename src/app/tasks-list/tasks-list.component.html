@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light justify-content-between">
   <div class="end">
-    <div class="new-task-btn" (click)="openDialog()">
+    <div class="new-task-btn" (click)="openNewTaskDialog()">
       <i class="fa fa-plus nav-icon"></i> <span>Nowe zadanie</span>
      </div>
     <form class="form-inline">
@@ -22,7 +22,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let task of Tasks">
+      <tr *ngFor="let task of Tasks" (click)="openTaskDialog(task.id)">
           <th scope="row"></th>
           <td>{{task.name}}</td>
           <td>{{task.realization}}%</td>

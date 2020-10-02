@@ -78,7 +78,7 @@ export class TaskCardDialogComponent implements OnInit {
    
     var newData: KanbanTask = {
       id: formData.id,
-      kanbanType: this.checkTaskType(formData.type, this.taskData.realization),
+      kanbanType: this.kanbanService.checkTaskType(formData.type, this.taskData.realization),
       name: formData.name,
       description: formData.description,
       dateStart: formData.dateStart,
@@ -92,20 +92,5 @@ export class TaskCardDialogComponent implements OnInit {
 
   close() {
       this.dialogRef.close();
-  }
-
-  private checkTaskType(type: columnsName, realization: number): columnsName{
-    if(realization == 0 && type != columnsName.todo){
-      return columnsName.todo;
-    }
-    else if(realization == 100 && type != columnsName.done){
-      return columnsName.done;
-    }
-    else if( type != columnsName.inprogress){
-      return columnsName.inprogress;
-    }
-    else{
-        return type;
-      } 
   }
 }

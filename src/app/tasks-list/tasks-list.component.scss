@@ -59,3 +59,7 @@ $font-color-active: rgba(0,0,0,.9);
     display: flex;
     flex-direction: row;
 }
+
+tr:hover {
+    cursor: pointer;
+}

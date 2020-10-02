@@ -1,5 +1,6 @@
     <div class="kanban-card">
        <div style="font-size: larger;"><b>Nazwa:</b> {{cardTask.name}}</div> 
+       <div><b>Kategoria:</b> {{cardTask.organizationType}}</div>
        <div><b>Początek:</b> {{cardTask.dateStart}}</div>
        <div><b>Koniec:</b> {{cardTask.dateEnd}}</div> 
        <div *ngIf="(showMore | async)">
