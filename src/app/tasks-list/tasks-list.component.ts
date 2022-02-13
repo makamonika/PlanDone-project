@@ -36,14 +36,13 @@ export class TasksListComponent implements OnInit, OnDestroy {
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = false;
       dialogConfig.autoFocus = false;
-      dialogConfig.height= '90vh';
-      dialogConfig.width= '60vw';
       const dialogRef = this.dialog.open(NewTaskComponent, dialogConfig);
-      // dialogRef.afterClosed().subscribe(
-      //   () => {
-      //     this.tasksSelection();
-      //   }
-      // );  
+      dialogRef.afterClosed().subscribe((response) => {
+        console.log('dialog close', response);
+        if(response){
+          this.kanbanService.getData().subscribe(tasks => this.Tasks = tasks);
+        }  
+      });  
     }
 
     openTaskDialog(id: number){
@@ -51,8 +50,6 @@ export class TasksListComponent implements OnInit, OnDestroy {
            const dialogConfig = new MatDialogConfig();
            dialogConfig.disableClose = false;
            dialogConfig.autoFocus = false;
-           dialogConfig.height= '85vh';
-           dialogConfig.width= '60vw';
            dialogConfig.data = {
              task: taskData
            };

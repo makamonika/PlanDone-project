@@ -19,6 +19,8 @@ export class TaskCardDialogComponent implements OnInit {
   taskForm: FormGroup;
   organizationTypes: OrgnizationType[] = [];
   taskId;
+
+  editMode: boolean = false;
   
 
   constructor(
@@ -50,7 +52,7 @@ export class TaskCardDialogComponent implements OnInit {
      // dateEnd: [this.datePipe.transform(new Date(this.taskData.dateEnd),"yyyy-MM-dd")],
       realization: [this.taskData.realization],
       organizationType: [this.taskData.organizationType]
-    })
+    });
     
   }
 

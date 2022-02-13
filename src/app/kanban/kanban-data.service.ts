@@ -89,9 +89,9 @@ export class KanbanDataService {
       return this.http.get<Object>('https://localhost:44310/api/TaskData/organizationTypesList');
     }
 
-    insertNewTask(data: KanbanTask) {
-      this.http.post<KanbanTask>('https://localhost:44310/api/TaskData/addNewTask', data).subscribe(res => console.log(res));
-      return;
+    insertNewTask(data: KanbanTask): Observable<any>{
+      return this.http.post<KanbanTask>('https://localhost:44310/api/TaskData/addNewTask', data);
+      
     }
 
     checkTaskType(type: columnsName, realization: number): columnsName{

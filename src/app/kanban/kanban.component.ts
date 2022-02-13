@@ -121,8 +121,6 @@ export class KanbanComponent implements OnInit, OnDestroy {
         const dialogConfig = new MatDialogConfig();
         dialogConfig.disableClose = false;
         dialogConfig.autoFocus = false;
-        dialogConfig.height= '85vh';
-        dialogConfig.width= '60vw';
         dialogConfig.data = {
           task: taskData
         };

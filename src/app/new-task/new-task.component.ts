@@ -71,8 +71,7 @@ export class NewTaskComponent implements OnInit {
       realization: this.taskData.realization,
       organizationType: formData.organizationType
     }
-    this.kanbanService.insertNewTask(newData);
-    this.dialogRef.close();
+    this.kanbanService.insertNewTask(newData).subscribe(() => this.dialogRef.close(true));
   }
 
   close() {
