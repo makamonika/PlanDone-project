@@ -1,5 +1,5 @@
 <div mat-dialog-title class="heading">
-    <div style="display:inline-block; opacity: 0.9;"> <i class="fa fa-edit" style="font-size: 30px; padding: 7px 3px 7px 0px; vertical-align: middle;"></i>
+    <div style="display:inline-block; opacity: 0.9;"> <i class="bi bi-card-text" style="font-size: 25px; padding: 7px 3px 7px 0px; vertical-align: middle;"></i>
         <span style="vertical-align: middle; font-size: 1.3rem"> {{taskData.name}}: </span>
     </div>
 </div>
@@ -23,19 +23,22 @@
         placeholder="Opis: "
                formControlName ="description" [readonly]="!editMode"> </textarea>
     </mat-form-field>
-    <mat-form-field>
-        <input matInput
-                placeholder="Data rozpoczęcia: "
-               formControlName ="dateStart" [readonly]="!editMode">
+    <mat-form-field class="date-picker" appearance="outline">
+        <mat-label>Data rozpoczęcia:</mat-label>
+        <input matInput [matDatepicker]="pickerStart" (dateChange)="dateStartSelected()"
+            class="date-input" formControlName="dateStart" [disabled]="!editMode">
+        <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+        <mat-datepicker #pickerStart></mat-datepicker>
     </mat-form-field>
-    <mat-form-field>
-        <input matInput
-        placeholder="Data zakończenia: "
-       formControlName ="dateEnd" [readonly]="!editMode">
+    <mat-form-field class="date-picker" appearance="outline">
+        <mat-label>Data zakończenia:</mat-label>
+        <input matInput [matDatepicker]="pickerEnd" (dateChange)="dateEndSelected()"
+            class="date-input" formControlName="dateEnd" [disabled]="!editMode">
+        <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+        <mat-datepicker #pickerEnd></mat-datepicker>
     </mat-form-field>
     <div class="input-label">Realizacja:</div>
     <div class="realization-input">
-        
         <div *ngIf="editMode" (click)="sub()"><i class="fa fa-minus icon-border"></i></div>
         <div class="input-part">
             <div>{{taskData.realization}}</div> 

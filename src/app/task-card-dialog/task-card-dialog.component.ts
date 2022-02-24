@@ -6,6 +6,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import {MatSelectModule} from '@angular/material/select'; 
 import { DatePipe } from '@angular/common';
+import * as moment from 'moment';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class TaskCardDialogComponent implements OnInit {
   
 
   constructor(
-    public dialogRef: MatDialogRef<TaskCardDialogComponent>, 
+    public dialogRef: MatDialogRef<TaskCardDialogComponent>,
     private kanbanService: KanbanDataService,
     private fb: FormBuilder,
     private datePipe: DatePipe,
@@ -53,6 +54,9 @@ export class TaskCardDialogComponent implements OnInit {
       realization: [this.taskData.realization],
       organizationType: [this.taskData.organizationType]
     });
+
+    this.selectedStart = moment(this.taskForm.value.dateStart).add(1, "h").toJSON().split('T')[0];
+    this.selectedEnd = moment(this.taskForm.value.dateEnd).add(1, "h").toJSON().split('T')[0];
     
   }
 
@@ -83,8 +87,8 @@ export class TaskCardDialogComponent implements OnInit {
       kanbanType: this.kanbanService.checkTaskType(formData.type, this.taskData.realization),
       name: formData.name,
       description: formData.description,
-      dateStart: formData.dateStart,
-      dateEnd:  formData.dateEnd,
+      dateStart: this.selectedStart,
+      dateEnd:  this.selectedEnd,
       realization: this.taskData.realization,
       organizationType: formData.organizationType
     }
@@ -94,5 +98,18 @@ export class TaskCardDialogComponent implements OnInit {
 
   close() {
       this.dialogRef.close();
+  }
+
+  
+  selectedStart:any;
+  dateStartSelected(){
+    this.selectedStart = moment(this.taskForm.value.dateStart).add(1, "h").toJSON().split('T')[0];
+    console.log(this.selectedStart);
+  }
+
+  selectedEnd:any;
+  dateEndSelected(){
+    this.selectedEnd = moment(this.taskForm.value.dateEnd).add(1, "h").toJSON().split('T')[0];
+    console.log(this.selectedEnd);
   }
 }

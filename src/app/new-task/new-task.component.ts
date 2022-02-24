@@ -3,6 +3,7 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { columnsName, KanbanDataService, KanbanTask, OrgnizationType } from '../kanban/kanban-data.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-new-task',
@@ -66,8 +67,8 @@ export class NewTaskComponent implements OnInit {
       kanbanType: this.checkTaskType(this.taskData.realization),
       name: formData.name,
       description: formData.description,
-      dateStart: formData.dateStart,
-      dateEnd:  formData.dateEnd,
+      dateStart: this.selectedStart,
+      dateEnd:  this.selectedEnd,
       realization: this.taskData.realization,
       organizationType: formData.organizationType
     }
@@ -76,6 +77,18 @@ export class NewTaskComponent implements OnInit {
 
   close() {
       this.dialogRef.close();
+  }
+
+  selectedStart:any;
+  dateStartSelected(){
+    this.selectedStart = moment(this.taskForm.value.dateStart).add(1, "h").toJSON().split('T')[0];
+    console.log(this.selectedStart);
+  }
+
+  selectedEnd:any;
+  dateEndSelected(){
+    this.selectedEnd = moment(this.taskForm.value.dateEnd).add(1, "h").toJSON().split('T')[0];
+    console.log(this.selectedEnd);
   }
 
   private checkTaskType(realization: number): columnsName{

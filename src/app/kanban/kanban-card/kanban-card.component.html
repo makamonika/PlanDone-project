@@ -15,10 +15,10 @@
          <div *ngIf="(showMore | async)" class="description" (click)=hideDescription()><i class="fa fa-chevron-up icon-border"></i></div>
          <div *ngIf="!(showMore | async)" class="description" (click)=showDescription()><i class="fa fa-chevron-down icon-border"></i></div>
          <div class="progressBtns">
-            <div (click)="sub()"><i class="fa fa-minus icon-border" style="margin: 0px 5px;"></i></div>
-            <div (click)="add()"><i class="fa fa-plus icon-border" style="margin: 0px 5px;"></i></div>
+            <div (click)="sub()" [matTooltip]="'Zmniejsz realizację'"><i class="fa fa-minus icon-border" style="margin: 0px 5px;"></i></div>
+            <div (click)="add()" [matTooltip]="'Zwiększ realizację'"><i class="fa fa-plus icon-border" style="margin: 0px 5px;"></i></div>
          </div>
-         <div id="edit" (click)="openDialog(cardTask.id)"><i class="fa fa-edit icon-border"></i></div>
+         <div id="edit" (click)="openDialog(cardTask.id)" [matTooltip]="'Wyświetl zadanie'"><i class="bi bi-card-text icon-border"></i></div>
       </div>
     </div>
 
