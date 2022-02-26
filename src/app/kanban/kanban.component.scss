@@ -35,6 +35,8 @@ $font-color-active: rgba(0,0,0,.9);
 }
 
 .kanban-column-body{
+    height: 685px;
+    overflow-y: auto;
     padding: 0.5rem;
 }
 
@@ -103,4 +105,35 @@ $font-color-active: rgba(0,0,0,.9);
 }
 ::ng-deep .mat-calendar-body-selected {
     background-color: $bg-color-1 !important;
+}
+
+// ::-webkit-scrollbar {
+//     width: 12px;
+// }
+
+// ::-webkit-scrollbar-track {
+//     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+//     border-radius: 10px;
+// }
+
+// ::-webkit-scrollbar-thumb {
+//     border-radius: 10px;
+//     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+// }
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #F5F5F5;
+    border-radius: 8px; 
+}
+    
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5; 
+}
+    
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color:  #cfcfcf
 }
