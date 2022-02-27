@@ -97,6 +97,14 @@ export class TasksListComponent implements OnInit, OnDestroy {
       }
     }
 
+    onSort(sortByKey: string){
+      //if date - change to moment
+      //add sort desc 
+      this.Tasks.sort((a, b) => (a[sortByKey] > b[sortByKey]) ? 1 : ((b[sortByKey] > a[sortByKey]) ? -1 : 0));
+      console.log('after', this.Tasks);
+
+    }
+
     private tasksSelection(){
       this.kanbanService.getData(this.filterData).subscribe((tasks) => {
         if(tasks && tasks.length > 0){

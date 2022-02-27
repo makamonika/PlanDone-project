@@ -3,10 +3,10 @@
     <thead>
       <tr>
         <th scope="col"></th>
-        <th scope="col">Nazwa</th>
-        <th scope="col">Realizacja</th>
-        <th scope="col">Początek</th>
-        <th scope="col">Koniec</th>
+        <th scope="col" (click)="onSort('name')">Nazwa</th>
+        <th scope="col" (click)="onSort('realization')">Realizacja</th>
+        <th scope="col" (click)="onSort('dateStart')">Początek</th>
+        <th scope="col" (click)="onSort('dateEnd')">Koniec</th>
         <th scope="col">Typ</th>
         <th scope="col">Opis</th>
       </tr>
