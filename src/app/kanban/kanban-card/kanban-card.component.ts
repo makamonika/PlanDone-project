@@ -3,7 +3,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import * as moment from 'moment';
 import { Observable, Subject } from 'rxjs';
 import { TaskCardDialogComponent } from 'src/app/task-card-dialog/task-card-dialog.component';
-import { KanbanDataService, KanbanTask } from '../kanban-data.service';
+import { KanbanTask } from '../../models/models';
+import { KanbanDataService } from '../kanban-data.service';
 import { KanbanComponent } from '../kanban.component';
 
 @Component({

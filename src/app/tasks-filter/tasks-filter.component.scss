@@ -1,0 +1,59 @@
+$bg-color-1: rgba(126, 207, 159,0.5);
+$bg-color-2: rgba(255, 245, 239, 0.3);
+$bg-color-3: rgba(231, 229, 238, 0.3);
+$bg-color-4:rgba(255, 255, 255, 0.4);
+
+$font-color:rgba(44, 44, 44, 0.8);
+$font-color-hover:rgba(44, 44, 44, 1); 
+$font-color-active: rgba(0,0,0,.9);
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 0em;
+}
+
+
+::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 0em;
+}
+
+.navbar-light{
+    background-color: $bg-color-4;
+    border-radius: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.date-picker{
+    width: 150px !important;
+    margin: 0px 10px !important;
+    font-family: inherit !important;
+}
+
+.date-input{
+    margin-bottom: 15px !important;
+    vertical-align: middle !important;
+}
+
+.type-select{
+    padding-bottom: 8px;
+}
+
+#nav-label{
+    margin-right: 10px;
+}
+
+::ng-deep mat-form-field.date-picker{
+    width: 150px !important;
+    margin: 0px 10px !important;
+    font-family: inherit !important;
+}
+::ng-deep .mat-option.mat-selected:not(.mat-option-disabled){
+    color: $bg-color-1 !important;
+    font-weight: bold;
+}
+  
+::ng-deep .mat-select-arrow{
+    color: $bg-color-1 !important;
+}
+::ng-deep .mat-calendar-body-selected {
+    background-color: $bg-color-1 !important;
+}

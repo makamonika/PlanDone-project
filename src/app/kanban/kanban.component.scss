@@ -6,7 +6,6 @@ $bg-color-4:rgba(255, 255, 255, 0.4);
 $font-color:rgba(44, 44, 44, 0.8);
 $font-color-hover:rgba(44, 44, 44, 1); 
 $font-color-active: rgba(0,0,0,.9);
-
 .kanban-container{
     display: flex;
     flex-direction: row;
@@ -54,57 +53,6 @@ $font-color-active: rgba(0,0,0,.9);
     margin-left: auto;
     display: flex;
     flex-direction: row;
-}
-
-
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
-    padding: 0em;
-}
-
-
-::ng-deep .mat-form-field-wrapper {
-    padding-bottom: 0em;
-}
-
-// ::ng-deep input.mat-input-element.mat-form-field-autofill-control {
-//             margin-top: 0em !important;
-//         }
-
-// ::ng-deep .mat-datepicker-input-container {
-//     width: 100px;
-//     height: 100px !important;
-// }
-
-.date-picker{
-    width: 150px !important;
-    margin: 0px 10px !important;
-    font-family: inherit !important;
-}
-
-.date-input{
-    margin-bottom: 15px !important;
-    vertical-align: middle !important;
-}
-
-#nav-label{
-    margin-right: 10px;
-}
-
-::ng-deep mat-form-field.date-picker{
-    width: 150px !important;
-    margin: 0px 10px !important;
-    font-family: inherit !important;
-}
-::ng-deep .mat-option.mat-selected:not(.mat-option-disabled){
-    color: $bg-color-1 !important;
-    font-weight: bold;
-}
-  
-::ng-deep .mat-select-arrow{
-    color: $bg-color-1 !important;
-}
-::ng-deep .mat-calendar-body-selected {
-    background-color: $bg-color-1 !important;
 }
 
 ::-webkit-scrollbar-track {

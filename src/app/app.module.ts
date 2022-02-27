@@ -20,6 +20,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { RouterModule, Routes} from '@angular/router';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { TasksFilterComponent } from './tasks-filter/tasks-filter.component';
 
 export const MY_DATE_FORMATS = {
   parse: {
@@ -55,7 +56,8 @@ const appRoutes: Routes = [
     KanbanCardComponent,
     TaskCardDialogComponent,
     TasksListComponent,
-    NewTaskComponent
+    NewTaskComponent,
+    TasksFilterComponent
   ],
   imports: [
     BrowserModule,

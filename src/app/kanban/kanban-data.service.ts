@@ -1,30 +1,8 @@
 import { Injectable } from '@angular/core';
-import * as moment from 'moment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { pipe, Observable, Subject } from 'rxjs';
-import { TaskCardDialogComponent } from '../task-card-dialog/task-card-dialog.component';
-
-export enum columnsName {
-  todo = 'todo',
-  inprogress = 'inprogress',
-  done = 'done'
-};
-
-export class KanbanTask {
-  id: number;
-  kanbanType: columnsName;
-  name: string;
-  description: string;
-  dateStart: any;
-  dateEnd: any;
-  realization: number;
-  organizationType: string;
-}
-
-export class OrgnizationType{
-  id: number;
-  name: string;
-}
+import { columnsName, KanbanTask, TasksFilterData } from '../models/models';
+import { isString } from '@ng-bootstrap/ng-bootstrap/util/util';
 
 @Injectable({
   providedIn: 'root'
@@ -81,8 +59,12 @@ export class KanbanDataService {
       return this.http.post<KanbanTask>('https://localhost:44310/api/TaskData/updatePlanDoneTask', data);
     }
 
-    getData(): Observable<KanbanTask[]> {
-     return this.http.get<KanbanTask[]>('https://localhost:44310/api/TaskData/tasksList');
+    getData(filterData: TasksFilterData): Observable<KanbanTask[]> {
+      let params = new HttpParams();
+      Object.keys(filterData).forEach( (key) => {
+        params = params.append(key, filterData[key]);
+    });
+     return this.http.get<KanbanTask[]>('https://localhost:44310/api/TaskData/tasksList', {params: params});
     }
 
     getOrganizationTypes(): Observable<Object>{

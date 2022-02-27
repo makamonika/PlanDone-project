@@ -1,9 +1,10 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { columnsName, KanbanDataService, KanbanTask, OrgnizationType } from '../kanban/kanban-data.service';
+import { KanbanDataService } from '../kanban/kanban-data.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import * as moment from 'moment';
+import { columnsName, KanbanTask, OrgnizationType } from '../models/models';
 
 @Component({
   selector: 'app-new-task',

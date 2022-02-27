@@ -1,14 +1,4 @@
-<nav class="navbar navbar-light justify-content-between">
-  <div class="end">
-    <div class="new-task-btn" (click)="openNewTaskDialog()">
-      <i class="fa fa-plus nav-icon"></i> <span>Nowe zadanie</span>
-     </div>
-    <form class="form-inline">
-      <input class="form-control search-input mr-sm-2" type="search" placeholder="Zadanie" aria-label="Search">
-      <button class="btn btn-outline-success btn-sm my-2 my-sm-0 my-btn-color" type="submit"><div>Szukaj</div></button>
-    </form>
-  </div>
-</nav>
+<tasks-filter (filterEvent)="onFilter($event)"></tasks-filter>
 <table class="table">
     <thead>
       <tr>
