@@ -55,7 +55,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
       dialogRef.afterClosed().subscribe((response) => {
         console.log('dialog close', response);
         if(response){
-          this.kanbanService.getData(null).subscribe(tasks => this.Tasks = tasks); //TODO
+          this.kanbanService.getData(this.filterData).subscribe(tasks => this.Tasks = tasks);
         }  
       });  
     }
@@ -71,7 +71,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
            const dialogRef = this.dialog.open(TaskCardDialogComponent, dialogConfig);
            dialogRef.afterClosed().subscribe((response) => {
              if(response){
-              this.kanbanService.getData(null).subscribe(tasks => this.Tasks = tasks); //TODO
+              this.kanbanService.getData(this.filterData).subscribe(tasks => this.Tasks = tasks);
              }  
            })
            //TODO check if taskData has any changes, if yes send proper value
