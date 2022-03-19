@@ -85,3 +85,38 @@ textarea{
   color: $bg-color-1 !important;
 }
 
+.date-pickers-container{
+  margin-bottom: 20px; 
+  margin-top: 10px;
+  .date-picker{
+    min-width: 230px;
+    margin-left: 0px !important;
+    margin-right: 20px !important;
+  }
+}
+
+.dialog-btns{
+  margin-top: 40px;
+}
+
+.dialog-header{
+  display:inline-block; 
+  opacity: 0.9; 
+  padding: 7px;
+
+  i{
+    font-size: 25px; padding: 7px 3px 7px 0px; vertical-align: middle;
+  }
+
+  span{
+    vertical-align: middle; 
+    font-size: 1.5rem; 
+    font-family: Raleway
+  }
+}
+
+.task-desc-field{
+  margin-top: 5px; 
+  min-width: 500px;
+}
+

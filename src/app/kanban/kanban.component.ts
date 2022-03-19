@@ -6,6 +6,7 @@ import * as moment from 'moment';
 
 import { Subscription } from 'rxjs';
 import { columnsName, KanbanTask, TasksFilterData } from '../models/models';
+import { BreadcrumbElement, BreadcrumbService } from '../services/breadcrumb.service';
 
 
 
@@ -39,6 +40,7 @@ export class KanbanComponent implements OnInit, OnDestroy {
 
   
   constructor(private kanbanDataService: KanbanDataService,
+    private breadcrumbService: BreadcrumbService,
     public dialog: MatDialog) { 
       
     }
@@ -47,7 +49,10 @@ export class KanbanComponent implements OnInit, OnDestroy {
 
     this.subscription = this.kanbanDataService.taskDataChaned$.subscribe(()=>{
         this.tasksSelection();
-      });
+    });
+
+    var breadcrumb: BreadcrumbElement = { name: "Tablica Kanban", path: "/Kanban"}
+    this.breadcrumbService.setBreadcrumb(breadcrumb);
 
     this.tasksSelection();
     

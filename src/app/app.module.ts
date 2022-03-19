@@ -14,7 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { TasksListComponent } from './tasks-list/tasks-list.component';
-import { NewTaskComponent } from './new-task/new-task.component';
 import {DatePipe} from '@angular/common';
 import {MatSelectModule} from '@angular/material/select'; 
 import { RouterModule, Routes} from '@angular/router';
@@ -34,19 +33,17 @@ export const MY_DATE_FORMATS = {
 const appRoutes: Routes = [
   {
     path: 'TasksList', 
-    component: TasksListComponent
+    component: TasksListComponent,
   },
   {
     path: 'Kanban', 
-    component: KanbanComponent
+    component: KanbanComponent,
   },
   {
     path: '',
     redirectTo: '/Kanban',
     pathMatch: 'full'
   }
-  
-
 ]
 @NgModule({
   declarations: [
@@ -56,7 +53,6 @@ const appRoutes: Routes = [
     KanbanCardComponent,
     TaskCardDialogComponent,
     TasksListComponent,
-    NewTaskComponent,
     TasksFilterComponent
   ],
   imports: [

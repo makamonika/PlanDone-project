@@ -5,8 +5,8 @@ import * as moment from 'moment';
 import { Subject } from 'rxjs';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { KanbanDataService } from '../kanban/kanban-data.service';
-import { KanbanTask, TasksFilterData } from '../models/models';
-import { NewTaskComponent } from '../new-task/new-task.component';
+import { columnsName, KanbanTask, TasksFilterData } from '../models/models';
+import { BreadcrumbElement, BreadcrumbService } from '../services/breadcrumb.service';
 import { TaskCardDialogComponent } from '../task-card-dialog/task-card-dialog.component';
 
 @Component({
@@ -31,7 +31,8 @@ export class TasksListComponent implements OnInit, OnDestroy {
   
   constructor(private kanbanService: KanbanDataService, 
     public dialog: MatDialog,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private breadcrumbService: BreadcrumbService) {
     this.routeQueryParams$ = this.route.queryParams.subscribe(params => {
       if (params['newTask']) {
         this.openNewTaskDialog();
@@ -40,6 +41,8 @@ export class TasksListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    var breadcrumb: BreadcrumbElement = { name: "Lista zadań", path: "/TasksList"}
+    this.breadcrumbService.setBreadcrumb(breadcrumb);
     this.tasksSelection();
   }
 
@@ -48,12 +51,25 @@ export class TasksListComponent implements OnInit, OnDestroy {
   }
 
   openNewTaskDialog() {
+      let newTask: KanbanTask = {
+        id: 0,
+        kanbanType: columnsName.todo,
+        name: " ",
+        description: " ",
+        dateStart: moment(Date.now()).toJSON().split('T')[0],
+        dateEnd: moment(Date.now()).add(2,"M").toJSON().split('T')[0],
+        realization: 0,
+        organizationType: ""
+      } 
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = false;
       dialogConfig.autoFocus = false;
-      const dialogRef = this.dialog.open(NewTaskComponent, dialogConfig);
+      dialogConfig.data = {
+        task: newTask,
+        newTask: true
+      };
+      const dialogRef = this.dialog.open(TaskCardDialogComponent, dialogConfig);
       dialogRef.afterClosed().subscribe((response) => {
-        console.log('dialog close', response);
         if(response){
           this.tasksSelection();
         }  
@@ -98,11 +114,12 @@ export class TasksListComponent implements OnInit, OnDestroy {
     }
 
     onSort(sortByKey: string){
-      //if date - change to moment
-      //add sort desc 
-      this.Tasks.sort((a, b) => (a[sortByKey] > b[sortByKey]) ? 1 : ((b[sortByKey] > a[sortByKey]) ? -1 : 0));
-      console.log('after', this.Tasks);
-
+      if(sortByKey === "name"){
+        this.Tasks.sort((a, b) => (a[sortByKey].toLocaleLowerCase() > b[sortByKey].toLocaleLowerCase()) ? 1 : ((b[sortByKey].toLowerCase() > a[sortByKey].toLowerCase()) ? -1 : 0));
+      }
+      else{
+        this.Tasks.sort((a, b) => (a[sortByKey] > b[sortByKey]) ? 1 : ((b[sortByKey] > a[sortByKey]) ? -1 : 0));
+      }
     }
 
     private tasksSelection(){

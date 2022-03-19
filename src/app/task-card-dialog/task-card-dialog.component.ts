@@ -1,10 +1,7 @@
 import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { KanbanDataService } from '../kanban/kanban-data.service';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import {MatDatepickerModule} from '@angular/material/datepicker';  
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import {MatSelectModule} from '@angular/material/select'; 
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import * as moment from 'moment';
 import { KanbanTask, OrgnizationType } from '../models/models';
@@ -23,6 +20,7 @@ export class TaskCardDialogComponent implements OnInit {
   taskId;
 
   editMode: boolean = false;
+  newTask: boolean = false;
   
 
   constructor(
@@ -31,7 +29,12 @@ export class TaskCardDialogComponent implements OnInit {
     private fb: FormBuilder,
     private datePipe: DatePipe,
     @Inject(MAT_DIALOG_DATA) data) 
-    {this.taskData = data.task}
+    {
+      console.log(data);
+      this.taskData = data.task;
+      this.editMode = data.newTask != null;
+      this.newTask = data.newTask != null
+    }
       
   ngOnInit(): void {
     this.kanbanService.getOrganizationTypes().subscribe((data) =>{
@@ -93,7 +96,12 @@ export class TaskCardDialogComponent implements OnInit {
       realization: this.taskData.realization,
       organizationType: formData.organizationType
     }
-    this.kanbanService.updateTaskData(newData).subscribe(()=>this.dialogRef.close(true));
+    if(!this.newTask){
+      this.kanbanService.updateTaskData(newData).subscribe(()=>this.dialogRef.close(true));
+    }
+    else{
+      this.kanbanService.insertNewTask(newData).subscribe(() => this.dialogRef.close(true));
+    }
     
   }
 

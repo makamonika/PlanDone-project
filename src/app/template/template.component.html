@@ -29,8 +29,7 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb breadcrumb-style">
         <li class="breadcrumb-item"><a class="breadcrumb-text" href="#">Strona Główna</a></li>
-        <li class="breadcrumb-item"><a class="breadcrumb-text" href="#">Lista zadań</a></li>
-        <li class="breadcrumb-item active">PlanDone Projekt</li>
+        <li class="breadcrumb-item"><a class="breadcrumb-text" [href]="breadcrumb.path">{{breadcrumb.name}}</a></li>
       </ol>
     </nav>
     <div> <router-outlet></router-outlet></div>
