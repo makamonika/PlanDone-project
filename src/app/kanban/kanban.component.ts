@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { KanbanDataService } from './kanban-data.service';
 import { MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { TaskCardDialogComponent } from '../task-card-dialog/task-card-dialog.component';
 import * as moment from 'moment';
 
 import { Subscription } from 'rxjs';
-import { columnsName, KanbanTask, TasksFilterData } from '../models/models';
+import { columnsName, Task, TasksFilterData } from '../models/models';
 import { BreadcrumbElement, BreadcrumbService } from '../services/breadcrumb.service';
+import { TaskService } from '../services/task.service';
 
 
 
@@ -19,12 +19,12 @@ import { BreadcrumbElement, BreadcrumbService } from '../services/breadcrumb.ser
 
 export class KanbanComponent implements OnInit, OnDestroy {
   
-  columns = this.kanbanDataService.columnData;
+  columns = this.taskService.columnData;
   tasksDone = [];
   tasksInProgress = [];
   tasksToDo = [];
   columnsNames = columnsName;
-  taskToDialog: KanbanTask;
+  taskToDialog: Task;
 
   startDate: string = moment(Date.now()).add(2, "h").toJSON().split('T')[0];
   endDate: string = moment(this.startDate).add(2, "h").add(2, 'M').toJSON().split('T')[0];
@@ -39,7 +39,7 @@ export class KanbanComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   
-  constructor(private kanbanDataService: KanbanDataService,
+  constructor(private taskService: TaskService,
     private breadcrumbService: BreadcrumbService,
     public dialog: MatDialog) { 
       
@@ -47,7 +47,7 @@ export class KanbanComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.subscription = this.kanbanDataService.taskDataChaned$.subscribe(()=>{
+    this.subscription = this.taskService.taskDataChaned$.subscribe(()=>{
         this.tasksSelection();
     });
 
@@ -63,7 +63,7 @@ export class KanbanComponent implements OnInit, OnDestroy {
     this.tasksToDo = [];
     this.tasksInProgress = [];
     this.tasksDone = [];
-    this.kanbanDataService.getData(this.filterData).subscribe(
+    this.taskService.getData(this.filterData).subscribe(
       (data)=> {
         if(data && data.length > 0){
           data.forEach(task => {
@@ -91,7 +91,7 @@ export class KanbanComponent implements OnInit, OnDestroy {
     }
 
     openDialog(id: number) {
-      this.kanbanDataService.getTaskById(id).subscribe((taskData=>{
+      this.taskService.getTaskById(id).subscribe((taskData=>{
         const dialogConfig = new MatDialogConfig();
         dialogConfig.disableClose = false;
         dialogConfig.autoFocus = false;

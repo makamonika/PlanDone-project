@@ -4,9 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { Subject } from 'rxjs';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { KanbanDataService } from '../kanban/kanban-data.service';
-import { columnsName, KanbanTask, TasksFilterData } from '../models/models';
+import { columnsName, Task, TasksFilterData } from '../models/models';
 import { BreadcrumbElement, BreadcrumbService } from '../services/breadcrumb.service';
+import { TaskService } from '../services/task.service';
 import { TaskCardDialogComponent } from '../task-card-dialog/task-card-dialog.component';
 
 @Component({
@@ -16,7 +16,7 @@ import { TaskCardDialogComponent } from '../task-card-dialog/task-card-dialog.co
 })
 export class TasksListComponent implements OnInit, OnDestroy {
 
-  Tasks: KanbanTask[] = [];
+  Tasks: Task[] = [];
   routeQueryParams$: Subscription;
   showMore = new Subject<boolean>();
 
@@ -29,7 +29,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
     typeId: 0
   };
   
-  constructor(private kanbanService: KanbanDataService, 
+  constructor(private taskService: TaskService, 
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private breadcrumbService: BreadcrumbService) {
@@ -51,7 +51,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
   }
 
   openNewTaskDialog() {
-      let newTask: KanbanTask = {
+      let newTask: Task = {
         id: 0,
         kanbanType: columnsName.todo,
         name: " ",
@@ -77,7 +77,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
     }
 
     openTaskDialog(id: number){
-        this.kanbanService.getTaskById(id).subscribe((taskData=>{
+        this.taskService.getTaskById(id).subscribe((taskData=>{
            const dialogConfig = new MatDialogConfig();
            dialogConfig.disableClose = false;
            dialogConfig.autoFocus = false;
@@ -123,7 +123,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
     }
 
     private tasksSelection(){
-      this.kanbanService.getData(this.filterData).subscribe((tasks) => {
+      this.taskService.getData(this.filterData).subscribe((tasks) => {
         if(tasks && tasks.length > 0){
           this.Tasks = tasks;
         }

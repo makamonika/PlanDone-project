@@ -20,6 +20,9 @@ import { RouterModule, Routes} from '@angular/router';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { TasksFilterComponent } from './tasks-filter/tasks-filter.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { CalendarComponent } from './calendar/calendar.component';
+import { environment } from '../environments/environment.prod';
 
 export const MY_DATE_FORMATS = {
   parse: {
@@ -31,6 +34,10 @@ export const MY_DATE_FORMATS = {
 };
 
 const appRoutes: Routes = [
+  {
+    path: 'Calendar', 
+    component: CalendarComponent,
+  },
   {
     path: 'TasksList', 
     component: TasksListComponent,
@@ -53,7 +60,8 @@ const appRoutes: Routes = [
     KanbanCardComponent,
     TaskCardDialogComponent,
     TasksListComponent,
-    TasksFilterComponent
+    TasksFilterComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +75,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     MatSelectModule,
     MatTooltipModule,
+    FullCalendarModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
@@ -74,6 +83,7 @@ const appRoutes: Routes = [
     DatePipe,
     {provide: MAT_DATE_LOCALE, useValue: 'pl-PL'},
     {provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS},
+    { provide: "BASE_API_URL", useValue: environment.apiUrl }
   ],
   bootstrap: [AppComponent]
 })

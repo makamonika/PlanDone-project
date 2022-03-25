@@ -10,39 +10,47 @@
         placeholder="Nazwa: "
                formControlName ="name" [readonly]="!editMode">
     </mat-form-field>
-    <div class="input-label">Typ:</div>
+    <div *ngIf="editMode"class="input-label">Typ:</div>
     <mat-form-field>
-        <mat-select
-                formControlName ="organizationType" [disabled] ="!editMode">
+        <mat-select *ngIf="editMode"
+                formControlName ="organizationType">
           <mat-option *ngFor="let type of organizationTypes" [value]="type.name">
             {{type.name}}
           </mat-option>
         </mat-select>
-      </mat-form-field>
+        <input matInput *ngIf="!editMode" placeholder="Typ: " [readonly]="true"
+               formControlName ="organizationType" >
+    </mat-form-field>
     <mat-form-field class="task-desc-field">
         <textarea matInput style="margin-top: 5px;"
         placeholder="Opis: "
                formControlName ="description" [readonly]="!editMode"> </textarea>
     </mat-form-field>
     <div class="date-pickers-container">
-        <mat-form-field class="date-picker" appearance="outline">
+        <mat-form-field *ngIf="editMode" class="date-picker" appearance="outline">
             <mat-label>Data rozpoczęcia:</mat-label>
             <input matInput [matDatepicker]="pickerStart" (dateChange)="dateStartSelected()"
-                class="date-input" formControlName="dateStart" [disabled]="!editMode">
+                class="" formControlName="dateStart">
             <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
             <mat-datepicker #pickerStart></mat-datepicker>
         </mat-form-field>
-        <mat-form-field class="date-picker" appearance="outline">
+        <mat-form-field *ngIf="!editMode" class="smaller-input margin-right">
+            <input matInput formControlName="dateStart" placeholder="Data rozpoczęcia: " [readonly]="true"> 
+        </mat-form-field>
+        <mat-form-field *ngIf="editMode" class="date-picker" appearance="outline">
             <mat-label>Data zakończenia:</mat-label>
             <input matInput [matDatepicker]="pickerEnd" (dateChange)="dateEndSelected()"
-                class="date-input" formControlName="dateEnd" [disabled]="!editMode">
+                class="" formControlName="dateEnd">
             <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
             <mat-datepicker #pickerEnd></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field *ngIf="!editMode" class="smaller-input">
+            <input matInput formControlName="dateEnd" placeholder="Data zakończenia: " [readonly]="true">
         </mat-form-field>
     </div>
    
     <div class="input-label">Realizacja:</div>
-    <div class="realization-input">
+    <div class="realization-input smaller-input">
         <div *ngIf="editMode" (click)="sub()"><i class="fa fa-minus icon-border"></i></div>
         <div class="input-part">
             <div>{{taskData.realization}}%</div> 

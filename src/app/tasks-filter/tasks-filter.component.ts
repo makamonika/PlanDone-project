@@ -2,8 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import * as moment from 'moment';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import { KanbanDataService } from '../kanban/kanban-data.service';
 import { OrgnizationType, TasksFilterData } from '../models/models';
+import { TaskService } from '../services/task.service';
 
 @Component({
   selector: 'tasks-filter',
@@ -27,9 +27,9 @@ export class TasksFilterComponent implements OnInit {
 
   filterData: TasksFilterData;
   
-  constructor(private kanbanDataService: KanbanDataService,
+  constructor(private taskService: TaskService,
     private fb: FormBuilder) {
-    this.kanbanDataService.getOrganizationTypes().subscribe((data) =>{
+    this.taskService.getOrganizationTypes().subscribe((data) =>{
       for(var i in data){
         var orgType = new OrgnizationType();
         orgType.id = parseInt(i);

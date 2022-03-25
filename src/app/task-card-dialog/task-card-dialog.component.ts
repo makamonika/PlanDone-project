@@ -1,10 +1,10 @@
 import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { KanbanDataService } from '../kanban/kanban-data.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import * as moment from 'moment';
-import { KanbanTask, OrgnizationType } from '../models/models';
+import { Task, OrgnizationType } from '../models/models';
+import { TaskService } from '../services/task.service';
 
 
 @Component({
@@ -14,18 +14,21 @@ import { KanbanTask, OrgnizationType } from '../models/models';
   encapsulation: ViewEncapsulation.None
 })
 export class TaskCardDialogComponent implements OnInit {
-  taskData: KanbanTask;
+  taskData: Task;
   taskForm: FormGroup;
   organizationTypes: OrgnizationType[] = [];
   taskId;
 
   editMode: boolean = false;
   newTask: boolean = false;
+
+  selectedStart:any;
+  selectedEnd:any;
   
 
   constructor(
     public dialogRef: MatDialogRef<TaskCardDialogComponent>,
-    private kanbanService: KanbanDataService,
+    private taskService: TaskService,
     private fb: FormBuilder,
     private datePipe: DatePipe,
     @Inject(MAT_DIALOG_DATA) data) 
@@ -37,7 +40,7 @@ export class TaskCardDialogComponent implements OnInit {
     }
       
   ngOnInit(): void {
-    this.kanbanService.getOrganizationTypes().subscribe((data) =>{
+    this.taskService.getOrganizationTypes().subscribe((data) =>{
       for(var i in data){
         var orgType = new OrgnizationType();
         orgType.id = parseInt(i);
@@ -65,7 +68,7 @@ export class TaskCardDialogComponent implements OnInit {
   }
 
   private getTask(){
-    this.kanbanService.getTaskById(this.taskId).subscribe((dataRes)=>{
+    this.taskService.getTaskById(this.taskId).subscribe((dataRes)=>{
       this.taskData = dataRes;
       console.log(this.taskData);
     })
@@ -86,9 +89,9 @@ export class TaskCardDialogComponent implements OnInit {
   save() {
     var formData = this.taskForm.value;
    
-    var newData: KanbanTask = {
+    var newData: Task = {
       id: formData.id,
-      kanbanType: this.kanbanService.checkTaskType(formData.type, this.taskData.realization),
+      kanbanType: this.taskService.checkTaskType(formData.type, this.taskData.realization),
       name: formData.name,
       description: formData.description,
       dateStart: this.selectedStart,
@@ -97,26 +100,22 @@ export class TaskCardDialogComponent implements OnInit {
       organizationType: formData.organizationType
     }
     if(!this.newTask){
-      this.kanbanService.updateTaskData(newData).subscribe(()=>this.dialogRef.close(true));
+      this.taskService.updateTaskData(newData).subscribe(()=>this.dialogRef.close(true));
     }
     else{
-      this.kanbanService.insertNewTask(newData).subscribe(() => this.dialogRef.close(true));
+      this.taskService.insertNewTask(newData).subscribe(() => this.dialogRef.close(true));
     }
-    
   }
 
   close() {
       this.dialogRef.close();
   }
 
-  
-  selectedStart:any;
   dateStartSelected(){
     this.selectedStart = moment(this.taskForm.value.dateStart).add(1, "h").toJSON().split('T')[0];
     console.log(this.selectedStart);
   }
 
-  selectedEnd:any;
   dateEndSelected(){
     this.selectedEnd = moment(this.taskForm.value.dateEnd).add(1, "h").toJSON().split('T')[0];
     console.log(this.selectedEnd);
