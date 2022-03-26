@@ -26,6 +26,8 @@ export class TasksFilterComponent implements OnInit {
   organizationTypes: OrgnizationType[] = [];
 
   filterData: TasksFilterData;
+
+  showFilters: boolean;
   
   constructor(private taskService: TaskService,
     private fb: FormBuilder) {

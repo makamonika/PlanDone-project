@@ -37,8 +37,26 @@ $font-color-active: rgba(0,0,0,.9);
     padding-bottom: 8px;
 }
 
+.navbar-toggler{
+    width: 100%;
+}
+
 #nav-label{
     margin-right: 10px;
+}
+
+.filter-label{
+    width: 90px;
+    align-self: center;
+    text-align: end;
+}
+
+.filter-box{
+    display: flex;
+}
+.filter-box-mobile {
+    width: 100%;
+    justify-content: center;
 }
 
 ::ng-deep mat-form-field.date-picker{

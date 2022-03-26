@@ -1,33 +1,50 @@
-<nav class="navbar navbar-light justify-content-between">
-    <div>
-      <form class="form-inline">
-          <label>Pokaż zadania od:</label>
-          <mat-form-field appearance="outline" class="date-picker"> 
-            <input matInput [matDatepicker]="pickerS" (dateChange)="dateStartSelected()"
-            class="date-input" [formControl]="dateStart">
-            <mat-datepicker-toggle matSuffix [for]="pickerS" ></mat-datepicker-toggle>
-            <mat-datepicker #pickerS></mat-datepicker>
-          </mat-form-field>
-          <label>do:</label>
-          <mat-form-field class="date-picker" appearance="outline">
-            <input matInput [matDatepicker]="pickerE" (dateChange)="dateEndSelected()"
-            class="date-input" [formControl]="dateEnd">
-            <mat-datepicker-toggle matSuffix [for]="pickerE"></mat-datepicker-toggle>
-            <mat-datepicker #pickerE></mat-datepicker>
-          </mat-form-field>
-          <label id="nav-label"> z kategorii:</label>
-          <mat-form-field class="date-picker" appearance="outline">
-            <mat-select class = "type-select"
-                    [formControl] ="organizationTypeId">
-              <mat-option #defaultType [value]="0">
-                Wszystkie
-              </mat-option>
-              <mat-option *ngFor="let type of organizationTypes" [value]="type.id">
-                {{type.name}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </form>
-    </div>
-    <button type="button" class="btn btn-dark" (click)="filter()">Filtruj</button>
-</nav>
+
+  <nav class="navbar navbar-expand-md navbar-light justify-content-between">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#filterContent" aria-controls="filterContent" aria-expanded="false" aria-label="Toggle navigation"
+              (click)="showFilters=!showFilters">
+      <span>Filtry 
+        <i *ngIf="!showFilters" class="fa fa-angle-down"></i>
+        <i *ngIf="showFilters" class="fa fa-angle-up"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="filterContent">
+      <div>
+        <form class="form-inline">
+            <div class="filter-box" [ngClass]="{'filter-box-mobile': showFilters}">
+              <label *ngIf="!showFilters" style="padding-right: 10px;">Pokaż zadania</label>
+              <label [ngClass]="{'filter-label': showFilters}">od:</label>
+              <mat-form-field appearance="outline" class="date-picker"> 
+                <input matInput [matDatepicker]="pickerS" (dateChange)="dateStartSelected()"
+                class="date-input" [formControl]="dateStart">
+                <mat-datepicker-toggle matSuffix [for]="pickerS" ></mat-datepicker-toggle>
+                <mat-datepicker #pickerS></mat-datepicker>
+              </mat-form-field>
+            </div> 
+            <div class="filter-box" [ngClass]="{'filter-box-mobile': showFilters}">
+              <label [ngClass]="{'filter-label': showFilters}">do:</label>
+              <mat-form-field class="date-picker" appearance="outline">
+                <input matInput [matDatepicker]="pickerE" (dateChange)="dateEndSelected()"
+                class="date-input" [formControl]="dateEnd">
+                <mat-datepicker-toggle matSuffix [for]="pickerE"></mat-datepicker-toggle>
+                <mat-datepicker #pickerE></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="filter-box" [ngClass]="{'filter-box-mobile': showFilters}">
+              <label [ngClass]="{'filter-label': showFilters}"> z kategorii:</label>
+              <mat-form-field class="date-picker" appearance="outline">
+                <mat-select class = "type-select"
+                        [formControl] ="organizationTypeId">
+                  <mat-option #defaultType [value]="0">
+                    Wszystkie
+                  </mat-option>
+                  <mat-option *ngFor="let type of organizationTypes" [value]="type.id">
+                    {{type.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            
+          </form>
+      </div>
+      <button type="button" class="btn btn-dark" (click)="filter()">Filtruj</button>
+    </div>   
+  </nav>
