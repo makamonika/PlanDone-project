@@ -57,6 +57,23 @@ $font-color-active: rgba(0,0,0,.9);
 .filter-box-mobile {
     width: 100%;
     justify-content: center;
+
+    label{
+        margin-bottom:  0px;
+    }
+}
+
+.filter-btn-mobile{
+    margin-top: 10px;
+    width: 50%;
+}
+
+.filter-btn-box{
+    margin-left: auto;
+}
+
+.show-filters-btn{
+    margin-bottom: 10px;
 }
 
 ::ng-deep mat-form-field.date-picker{
