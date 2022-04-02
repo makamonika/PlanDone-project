@@ -23,6 +23,9 @@ import { TasksFilterComponent } from './tasks-filter/tasks-filter.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { CalendarComponent } from './calendar/calendar.component';
 import { environment } from '../environments/environment.prod';
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+import listPlugin from '@fullcalendar/list'; // a plugin!
 
 export const MY_DATE_FORMATS = {
   parse: {
@@ -52,6 +55,13 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   }
 ]
+
+FullCalendarModule.registerPlugins([
+  dayGridPlugin,
+  interactionPlugin,
+  listPlugin
+]);
+
 @NgModule({
   declarations: [
     AppComponent,

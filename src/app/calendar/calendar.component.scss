@@ -1,0 +1,10 @@
+.calendar-container{
+    height: 80vh;
+    margin:30px;
+}
+
+::ng-deep .fc-button-primary{
+    color: #fff;
+    background-color: #343a40;
+    border-color: #343a40;
+}

@@ -25,6 +25,8 @@
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "@fullcalendar/angular": "^5.10.2",
     "@fullcalendar/daygrid": "^5.10.1",
+    "@fullcalendar/interaction": "^5.10.1",
+    "@fullcalendar/list": "^5.10.1",
     "@ng-bootstrap/ng-bootstrap": "^5.3.1",
     "bootstrap": "^4.5.0",
     "bootstrap-icons": "^1.8.1",
