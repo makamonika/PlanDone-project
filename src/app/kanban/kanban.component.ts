@@ -46,7 +46,6 @@ export class KanbanComponent implements OnInit, OnDestroy {
     }
 
   ngOnInit(): void {
-
     this.subscription = this.taskService.taskDataChaned$.subscribe(()=>{
         this.tasksSelection();
     });
@@ -59,7 +58,7 @@ export class KanbanComponent implements OnInit, OnDestroy {
   }
 
 
-  private tasksSelection(){
+  private tasksSelection(): void{
     this.tasksToDo = [];
     this.tasksInProgress = [];
     this.tasksDone = [];
@@ -108,8 +107,10 @@ export class KanbanComponent implements OnInit, OnDestroy {
       }))
     }
 
-    ngOnDestroy(){
-      this.subscription.unsubscribe();
+    ngOnDestroy(): void{
+      if(this.subscription){
+        this.subscription.unsubscribe();
+      }      
     }
 
     onFilter(data: TasksFilterData){

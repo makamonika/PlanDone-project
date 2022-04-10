@@ -49,16 +49,7 @@ export class TasksFilterComponent implements OnInit {
     })
   }
 
-  dateStartSelected() {
-    //this.selectedStart = moment(this.dateStart.value.toJSON().split('T')[0]);
-    //this.selectedStart = this.dateStart.value;
-  }
-  dateEndSelected() {
-   //this.selectedEnd = this.dateEnd.value;
-  }
-
-  filter(){
-    // TODO data is not changed
+  filter(): void{
     this.filterData = this.filterFormData.value;
     this.filterEvent.emit(this.filterData);
   }

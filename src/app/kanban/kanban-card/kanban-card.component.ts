@@ -25,7 +25,7 @@ export class KanbanCardComponent implements OnInit {
     this.task = this.cardTask;
   }
 
-  add(){
+  add(): void{
     if(this.task.realization<100){
       this.task.realization +=5;
       this.task.kanbanType = this.taskService.checkTaskType(this.task.kanbanType, this.task.realization);
@@ -33,22 +33,22 @@ export class KanbanCardComponent implements OnInit {
      }
   }
 
-  sub(){
+  sub(): void{
     if(this.task.realization>0){
       this.task.realization -=5;
       this.task.kanbanType = this.taskService.checkTaskType(this.task.kanbanType, this.task.realization);
       this.taskService.updateTaskData(this.task).subscribe(() => this.taskService.taskChanged()); 
     }
   }
-  showDescription(){
-        this.showMore.next(true);
+  showDescription(): void{
+    this.showMore.next(true);
   }
 
-  hideDescription(){
+  hideDescription(): void{
     this.showMore.next(false);
   }
 
-  openDialog(id: number) {
+  openDialog(id: number): void{
    this.taskService.getTaskById(id).subscribe((taskData=>{
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = false;

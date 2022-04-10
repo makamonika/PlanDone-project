@@ -13,7 +13,7 @@
               <label *ngIf="!showFilters" style="padding-right: 10px;">Pokaż zadania</label>
               <label [ngClass]="{'filter-label': showFilters}">od:</label>
               <mat-form-field appearance="outline" class="date-picker"> 
-                <input matInput [matDatepicker]="pickerS" (dateChange)="dateStartSelected()"
+                <input matInput [matDatepicker]="pickerS"
                 class="date-input" [formControl]="dateStart">
                 <mat-datepicker-toggle matSuffix [for]="pickerS" ></mat-datepicker-toggle>
                 <mat-datepicker #pickerS></mat-datepicker>
@@ -22,7 +22,7 @@
             <div class="filter-box" [ngClass]="{'filter-box-mobile': showFilters}">
               <label [ngClass]="{'filter-label': showFilters}">do:</label>
               <mat-form-field class="date-picker" appearance="outline">
-                <input matInput [matDatepicker]="pickerE" (dateChange)="dateEndSelected()"
+                <input matInput [matDatepicker]="pickerE"
                 class="date-input" [formControl]="dateEnd">
                 <mat-datepicker-toggle matSuffix [for]="pickerE"></mat-datepicker-toggle>
                 <mat-datepicker #pickerE></mat-datepicker>

@@ -22,7 +22,7 @@ export class TaskService {
 //     .subscribe(
 
 
-    taskChanged(){
+    taskChanged(): void{
       this.taskDataChanged.next(true);
     }
     getTaskById(id: number): Observable<Task> {

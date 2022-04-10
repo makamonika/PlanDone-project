@@ -86,7 +86,7 @@ FullCalendarModule.registerPlugins([
     MatSelectModule,
     MatTooltipModule,
     FullCalendarModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload'})
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},

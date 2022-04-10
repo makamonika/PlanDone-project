@@ -13,13 +13,13 @@
         <li class="nav-item" routerLink="/Kanban" routerLinkActive="active">
           <a class="nav-link nav-headings"><i class="fa fa-columns nav-icon"></i><span>Kanban</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link nav-headings" href="/Calendar"><i class="fa fa-calendar-o nav-icon"></i><span>Kalendarz</span></a>
+        <li class="nav-item" routerLink="/Calendar" routerLinkActive="active">
+          <a class="nav-link nav-headings"><i class="fa fa-calendar-o nav-icon"></i><span>Kalendarz</span></a>
         </li>
         <li class="nav-item" routerLink="/TasksList"  routerLinkActive="active">
           <a class="nav-link nav-headings"><i class="fa fa-list nav-icon"></i><span>Lista zadań</span></a>
         </li>
-        <li class="nav-item" routerLink="/TasksList" [queryParams]="{newTask: true}">
+        <li class="nav-item" (click)="addTask()">
           <a class="nav-link nav-headings"><i class="fa fa-plus nav-icon"></i><span>Nowe zadanie</span></a>
         </li>
       </ul>

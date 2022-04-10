@@ -14,10 +14,9 @@ import { TaskCardDialogComponent } from '../task-card-dialog/task-card-dialog.co
   templateUrl: './tasks-list.component.html',
   styleUrls: ['./tasks-list.component.scss']
 })
-export class TasksListComponent implements OnInit, OnDestroy {
+export class TasksListComponent implements OnInit {
 
   Tasks: Task[] = [];
-  routeQueryParams$: Subscription;
   showMore = new Subject<boolean>();
 
   startDate: string = moment(Date.now()).add(2, "h").toJSON().split('T')[0];
@@ -31,13 +30,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
   
   constructor(private taskService: TaskService, 
     public dialog: MatDialog,
-    private route: ActivatedRoute,
     private breadcrumbService: BreadcrumbService) {
-    this.routeQueryParams$ = this.route.queryParams.subscribe(params => {
-      if (params['newTask']) {
-        this.openNewTaskDialog();
-      }
-    });
   }
 
   ngOnInit(): void {
@@ -46,11 +39,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
     this.tasksSelection();
   }
 
-  ngOnDestroy() {
-    this.routeQueryParams$.unsubscribe();
-  }
-
-  openNewTaskDialog() {
+  openNewTaskDialog(): void{
       let newTask: Task = {
         id: 0,
         kanbanType: columnsName.todo,
@@ -76,7 +65,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
       });  
     }
 
-    openTaskDialog(id: number){
+    openTaskDialog(id: number): void{
         this.taskService.getTaskById(id).subscribe((taskData=>{
            const dialogConfig = new MatDialogConfig();
            dialogConfig.disableClose = false;
@@ -94,17 +83,15 @@ export class TasksListComponent implements OnInit, OnDestroy {
          }))
      }
 
-    showDescription()
-    {
+    showDescription(): void{
       this.showMore.next(true);
     }
 
-    hideDescription()
-    {
+    hideDescription(): void{
       this.showMore.next(false);
     }
 
-    onFilter(data: TasksFilterData){
+    onFilter(data: TasksFilterData): void{
       if(data) {
         this.filterData.startDate = data.startDate.add(2,"h").toJSON().split('T')[0];
         this.filterData.endDate = data.endDate.add(2,"h").toJSON().split('T')[0];
@@ -113,7 +100,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
       }
     }
 
-    onSort(sortByKey: string){
+    onSort(sortByKey: string): void{
       if(sortByKey === "name"){
         this.Tasks.sort((a, b) => (a[sortByKey].toLocaleLowerCase() > b[sortByKey].toLocaleLowerCase()) ? 1 : ((b[sortByKey].toLowerCase() > a[sortByKey].toLowerCase()) ? -1 : 0));
       }
@@ -122,7 +109,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
       }
     }
 
-    private tasksSelection(){
+    private tasksSelection(): void{
       this.taskService.getData(this.filterData).subscribe((tasks) => {
         if(tasks && tasks.length > 0){
           this.Tasks = tasks;

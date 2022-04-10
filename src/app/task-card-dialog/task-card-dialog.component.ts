@@ -67,20 +67,19 @@ export class TaskCardDialogComponent implements OnInit {
     
   }
 
-  private getTask(){
+  private getTask() : void{
     this.taskService.getTaskById(this.taskId).subscribe((dataRes)=>{
       this.taskData = dataRes;
-      console.log(this.taskData);
     })
   }
 
-  add(){
+  add(): void{
     if(this.taskData.realization<100){
      this.taskData.realization +=5;
     }
   }
 
-  sub(){
+  sub(): void{
     if(this.taskData.realization>0){
       this.taskData.realization -=5;
     }
@@ -107,17 +106,15 @@ export class TaskCardDialogComponent implements OnInit {
     }
   }
 
-  close() {
+  close(): void{
       this.dialogRef.close();
   }
 
-  dateStartSelected(){
+  dateStartSelected(): void{
     this.selectedStart = moment(this.taskForm.value.dateStart).add(1, "h").toJSON().split('T')[0];
-    console.log(this.selectedStart);
   }
 
-  dateEndSelected(){
+  dateEndSelected(): void{
     this.selectedEnd = moment(this.taskForm.value.dateEnd).add(1, "h").toJSON().split('T')[0];
-    console.log(this.selectedEnd);
   }
 }
