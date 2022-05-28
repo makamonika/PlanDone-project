@@ -43,8 +43,8 @@ export class CalendarComponent implements OnInit {
     eventClick: this.showEventDetails.bind(this)
   };
   
-  startDate: string = moment(Date.now()).add(2, "h").add(-1, 'M').toJSON().split('T')[0];
-  endDate: string = moment(this.startDate).add(2, "h").add(2, 'M').toJSON().split('T')[0];
+  startDate: string = moment(Date.now()).add(-1, 'M').toJSON().split('T')[0];
+  endDate: string = moment(this.startDate).add(2, 'M').toJSON().split('T')[0];
 
   filterData: TasksFilterData = {
     startDate: this.startDate,
@@ -62,7 +62,7 @@ export class CalendarComponent implements OnInit {
 
   dateChanged(arg: DatesSetArg): void {
    const start = arg.startStr.split('T')[0];
-   const end = moment(start).add(2, "h").add(2, 'M').toJSON().split('T')[0];
+   const end = moment(start).add(2, 'M').toJSON().split('T')[0];
    console.log(start, '\n', end);
    this.filterData.startDate = start;
    this.filterData.endDate = end;

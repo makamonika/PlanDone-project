@@ -26,8 +26,8 @@ export class KanbanComponent implements OnInit, OnDestroy {
   columnsNames = columnsName;
   taskToDialog: Task;
 
-  startDate: string = moment(Date.now()).add(2, "h").toJSON().split('T')[0];
-  endDate: string = moment(this.startDate).add(2, "h").add(2, 'M').toJSON().split('T')[0];
+  startDate: string = moment(Date.now()).toJSON().split('T')[0];
+  endDate: string = moment(this.startDate).add(2, 'M').toJSON().split('T')[0];
 
   filterData: TasksFilterData = {
     startDate: this.startDate,
