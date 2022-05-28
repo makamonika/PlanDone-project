@@ -1,12 +1,12 @@
     <div class="kanban-card">
-       <div style="font-size: larger;"><b>Nazwa:</b> {{cardTask.name}}</div> 
-       <div><b>Kategoria:</b> {{cardTask.organizationType}}</div>
-       <div><b>Początek:</b> {{cardTask.dateStart}}</div>
-       <div><b>Koniec:</b> {{cardTask.dateEnd}}</div> 
+       <div style="font-size: larger;"><b>Name:</b> {{cardTask.name}}</div> 
+       <div><b>Category:</b> {{cardTask.organizationType}}</div>
+       <div><b>Start:</b> {{cardTask.dateStart}}</div>
+       <div><b>End:</b> {{cardTask.dateEnd}}</div> 
        <div *ngIf="(showMore | async)">
-         <div><b>Opis:</b> {{cardTask.description}}</div>
+         <div><b>Description:</b> {{cardTask.description}}</div>
       </div>
-       <div><b>Realizacja:</b>  {{task.realization}} %
+       <div><b>Realization:</b>  {{task.realization}} %
          <div class="progress">
             <div class="progress-bar" role="progressbar" [ngStyle]="{'width': cardTask.realization + '%'}" aria-valuenow=cardTask.realization aria-valuemin="0" aria-valuemax="100"></div>
          </div>
@@ -15,10 +15,10 @@
          <div *ngIf="(showMore | async)" class="description" (click)=hideDescription()><i class="fa fa-chevron-up icon-border"></i></div>
          <div *ngIf="!(showMore | async)" class="description" (click)=showDescription()><i class="fa fa-chevron-down icon-border"></i></div>
          <div class="progressBtns">
-            <div (click)="sub()" [matTooltip]="'Zmniejsz realizację'"><i class="fa fa-minus icon-border margin-5"></i></div>
-            <div (click)="add()" [matTooltip]="'Zwiększ realizację'"><i class="fa fa-plus icon-border margin-5"></i></div>
+            <div (click)="sub()" [matTooltip]="'Increase'"><i class="fa fa-minus icon-border margin-5"></i></div>
+            <div (click)="add()" [matTooltip]="'Decrease'"><i class="fa fa-plus icon-border margin-5"></i></div>
          </div>
-         <div id="edit" (click)="openDialog(cardTask.id)" [matTooltip]="'Wyświetl zadanie'"><i class="bi bi-card-text icon-border"></i></div>
+         <div id="edit" (click)="openDialog(cardTask.id)" [matTooltip]="'Show task details'"><i class="bi bi-card-text icon-border"></i></div>
       </div>
     </div>
 

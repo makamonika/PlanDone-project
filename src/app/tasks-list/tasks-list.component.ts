@@ -34,7 +34,7 @@ export class TasksListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    var breadcrumb: BreadcrumbElement = { name: "Lista zadań", path: "/TasksList"}
+    var breadcrumb: BreadcrumbElement = { name: "Task list", path: "/TasksList"}
     this.breadcrumbService.setBreadcrumb(breadcrumb);
     this.tasksSelection();
   }

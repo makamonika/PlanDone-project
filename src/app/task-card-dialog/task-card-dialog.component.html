@@ -1,16 +1,16 @@
 <div mat-dialog-title class="heading">
     <div class="dialog-header"> 
         <i class="bi bi-card-text"></i>
-        <span> {{newTask ? 'Nowe zadanie' : taskData.name}}: </span>
+        <span> {{newTask ? 'New task' : taskData.name}}: </span>
     </div>
 </div>
 <mat-dialog-content [formGroup]="taskForm">
     <mat-form-field>
         <input matInput
-        placeholder="Nazwa: "
+        placeholder="Name: "
                formControlName ="name" [readonly]="!editMode">
     </mat-form-field>
-    <div *ngIf="editMode"class="input-label">Typ:</div>
+    <div *ngIf="editMode"class="input-label">Type:</div>
     <mat-form-field>
         <mat-select *ngIf="editMode"
                 formControlName ="organizationType">
@@ -18,38 +18,38 @@
             {{type.name}}
           </mat-option>
         </mat-select>
-        <input matInput *ngIf="!editMode" placeholder="Typ: " [readonly]="true"
+        <input matInput *ngIf="!editMode" placeholder="Type: " [readonly]="true"
                formControlName ="organizationType" >
     </mat-form-field>
     <mat-form-field class="task-desc-field">
         <textarea matInput style="margin-top: 5px;"
-        placeholder="Opis: "
+        placeholder="Description: "
                formControlName ="description" [readonly]="!editMode"> </textarea>
     </mat-form-field>
     <div class="date-pickers-container">
         <mat-form-field *ngIf="editMode" class="date-picker" appearance="outline">
-            <mat-label>Data rozpoczęcia:</mat-label>
+            <mat-label>Start date:</mat-label>
             <input matInput [matDatepicker]="pickerStart" (dateChange)="dateStartSelected()"
                 class="" formControlName="dateStart">
             <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
             <mat-datepicker #pickerStart></mat-datepicker>
         </mat-form-field>
         <mat-form-field *ngIf="!editMode" class="smaller-input margin-right">
-            <input matInput formControlName="dateStart" placeholder="Data rozpoczęcia: " [readonly]="true"> 
+            <input matInput formControlName="dateStart" placeholder="Start date: " [readonly]="true"> 
         </mat-form-field>
         <mat-form-field *ngIf="editMode" class="date-picker" appearance="outline">
-            <mat-label>Data zakończenia:</mat-label>
+            <mat-label>End date:</mat-label>
             <input matInput [matDatepicker]="pickerEnd" (dateChange)="dateEndSelected()"
                 class="" formControlName="dateEnd">
             <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
             <mat-datepicker #pickerEnd></mat-datepicker>
         </mat-form-field>
         <mat-form-field *ngIf="!editMode" class="smaller-input">
-            <input matInput formControlName="dateEnd" placeholder="Data zakończenia: " [readonly]="true">
+            <input matInput formControlName="dateEnd" placeholder="End date: " [readonly]="true">
         </mat-form-field>
     </div>
    
-    <div class="input-label">Realizacja:</div>
+    <div class="input-label">Realization:</div>
     <div class="realization-input smaller-input">
         <div *ngIf="editMode" (click)="sub()"><i class="fa fa-minus icon-border"></i></div>
         <div class="input-part">
@@ -61,8 +61,8 @@
 </mat-dialog-content>
 
 <mat-dialog-actions class ="dialog-btns">
-    <button *ngIf="!editMode" type="button" class="btn btn-dark first" (click)="editMode = true">Edytuj</button>
-    <button *ngIf="editMode" type="button" class="btn btn-dark first" (click)="save()">Zapisz</button>
-    <button type="button" class="btn btn-dark" (click)="close()">Zamknij</button>
+    <button *ngIf="!editMode" type="button" class="btn btn-dark first" (click)="editMode = true">Edit</button>
+    <button *ngIf="editMode" type="button" class="btn btn-dark first" (click)="save()">Save</button>
+    <button type="button" class="btn btn-dark" (click)="close()">Close</button>
 </mat-dialog-actions>
 

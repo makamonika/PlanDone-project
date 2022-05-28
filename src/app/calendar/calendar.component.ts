@@ -20,21 +20,21 @@ export class CalendarComponent implements OnInit {
   calendarOptions: CalendarOptions = {
      customButtons: {
       addNewTaskButton: {
-        text: 'Dodaj nowe zadanie',
+        text: 'Add new task',
         click: this.addNewTask.bind(this)
       }
     },
     initialView: 'dayGridMonth',
     height: '100%',
     locales: [ enLocale, plLocale ],
-    locale: 'pl',
+    locale: 'en',
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
       right: 'dayGridMonth listWeek addNewTaskButton'
     },
     buttonText: {
-      listWeek: 'Lista zadań'
+      listWeek: 'Task list'
     },
     datesSet: this.dateChanged.bind(this),
     eventOrderStrict: true,
@@ -56,7 +56,7 @@ export class CalendarComponent implements OnInit {
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    var breadcrumb: BreadcrumbElement = { name: "Kalendarz", path: "/Calendar"}
+    var breadcrumb: BreadcrumbElement = { name: "Calendar", path: "/Calendar"}
     this.breadcrumbService.setBreadcrumb(breadcrumb);
    }
 

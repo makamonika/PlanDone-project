@@ -8,19 +8,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item" routerLink="/Kanban"  routerLinkActive="active">
-          <a class="nav-link nav-headings"> <i class="fa fa-home nav-icon"></i><span>Strona główna</span></a>
+          <a class="nav-link nav-headings"> <i class="fa fa-home nav-icon"></i><span>Home</span></a>
         </li>
         <li class="nav-item" routerLink="/Kanban" routerLinkActive="active">
           <a class="nav-link nav-headings"><i class="fa fa-columns nav-icon"></i><span>Kanban</span></a>
         </li>
         <li class="nav-item" routerLink="/Calendar" routerLinkActive="active">
-          <a class="nav-link nav-headings"><i class="fa fa-calendar-o nav-icon"></i><span>Kalendarz</span></a>
+          <a class="nav-link nav-headings"><i class="fa fa-calendar-o nav-icon"></i><span>Calendar</span></a>
         </li>
         <li class="nav-item" routerLink="/TasksList"  routerLinkActive="active">
-          <a class="nav-link nav-headings"><i class="fa fa-list nav-icon"></i><span>Lista zadań</span></a>
+          <a class="nav-link nav-headings"><i class="fa fa-list nav-icon"></i><span>Task list</span></a>
         </li>
         <li class="nav-item" (click)="addTask()">
-          <a class="nav-link nav-headings"><i class="fa fa-plus nav-icon"></i><span>Nowe zadanie</span></a>
+          <a class="nav-link nav-headings"><i class="fa fa-plus nav-icon"></i><span>New task</span></a>
         </li>
       </ul>
     </div>
@@ -28,11 +28,11 @@
   <div class="container flex-fill">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb breadcrumb-style">
-        <li class="breadcrumb-item"><a class="breadcrumb-text" href="#">Strona Główna</a></li>
+        <li class="breadcrumb-item"><a class="breadcrumb-text" href="#">Home</a></li>
         <li class="breadcrumb-item"><a class="breadcrumb-text" [href]="breadcrumb.path">{{breadcrumb.name}}</a></li>
       </ol>
     </nav>
     <div> <router-outlet></router-outlet></div>
   </div>
-  <div class="footer" style="text-align: end"><span>Monika Mąka - frontend angular dev - 2020</span></div>
+  <div class="footer" style="text-align: end"><span>Monika Maka - frontend dev - 2020</span></div>
 </div>

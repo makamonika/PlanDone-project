@@ -50,7 +50,7 @@ export class KanbanComponent implements OnInit, OnDestroy {
         this.tasksSelection();
     });
 
-    var breadcrumb: BreadcrumbElement = { name: "Tablica Kanban", path: "/Kanban"}
+    var breadcrumb: BreadcrumbElement = { name: "Kanban", path: "/Kanban"}
     this.breadcrumbService.setBreadcrumb(breadcrumb);
 
     this.tasksSelection();
